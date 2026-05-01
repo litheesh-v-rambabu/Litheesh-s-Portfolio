@@ -7,14 +7,16 @@ const PrivacyPolicyPage = () => {
   return (
     <>
       <SEO
-        title="Privacy Policy - kushvith.com"
-        description="Learn how kushvith.com collects, uses, and protects your data when you visit this portfolio website."
+        title="Privacy Policy — Litheesh Velakaturi Portfolio"
+        description="Learn how litheesh.dev collects, uses, and protects your personal data when you visit this AI & ML engineer portfolio website."
+        canonical="https://litheesh.dev/privacy"
+        robots="noindex, follow"
       />
       <div className="pt-24 sm:pt-32 max-w-4xl mx-auto">
         <h1 className={`${styles.sectionHeadText} text-center`}>Privacy Policy</h1>
         <div className="mt-8 text-secondary text-lg leading-relaxed space-y-4">
           <p>Effective Date: October 18, 2025</p>
-          <p>Welcome to kushvith.com. This privacy policy explains how I collect, use, and protect the personal information you provide when you visit my portfolio.</p>
+          <p>Welcome to litheesh.com. This privacy policy explains how I collect, use, and protect the personal information you provide when you visit my portfolio.</p>
           
           <h2 className="text-white text-2xl font-bold pt-4">Information I Collect</h2>
           <p>When you visit this website, I may collect the following information for analytics purposes:</p>

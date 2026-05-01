@@ -1,17 +1,20 @@
 import React from 'react';
-import { AllProjects } from '../components'; // Re-use the AllProjects component
+import { AllProjects, StarsCanvas } from '../components';
 import SEO from '../components/SEO';
 
 const ProjectsPage = () => {
   return (
-    <div className='pt-24'>
-<SEO
-  title="Kushvith's Projects Showcase - AI, Full-Stack & Web Development Portfolio"
-  description="Explore Kushvith's diverse portfolio of projects, showcasing expertise in AI, full-stack, and web development. From intelligent data-driven applications and predictive models to scalable web solutions built with Python, TensorFlow, LangChain, Vertex AI, React, Node.js, Spring Boot, and modern frontend frameworks. Discover innovative projects including e-commerce platforms, hybrid stores, educational portals, and creative web solutions."
-  name="Kushvith"
-  type="article"
-/>
+    <div className='pt-24 relative z-0'>
+      <SEO
+        title="Projects — Litheesh Velakaturi | AI, ML & Web Portfolio"
+        description="Explore Litheesh Velakaturi's projects: AI Code Suggester (CodeLlama-7B on AWS SageMaker), Brain Tumor Segmentation CNN, NLTA multilingual browser extension (5K+ users), Dog Breed Classifier (ResNet/EfficientNet), Blockchain e-Voting (IARJSET 2024), and production web apps for e-commerce and healthcare."
+        keywords="AI ML projects portfolio, code suggester LLM, brain tumor segmentation CNN, NLTA browser extension multilingual, dog breed classifier ResNet, blockchain e-voting Ethereum, Anbu CocoMart ecommerce, KS Modular website, AuSmile dental, LangChain projects, TensorFlow projects"
+        canonical="https://litheesh.dev/projects"
+        name="Litheesh Velakaturi Rambabu"
+        type="article"
+      />
       <AllProjects />
+      <StarsCanvas />
     </div>
   );
 };

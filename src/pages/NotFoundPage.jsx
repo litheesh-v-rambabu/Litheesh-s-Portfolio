@@ -7,7 +7,12 @@ import { styles } from '../styles';
 const NotFoundPage = () => {
   return (
     <>
-      <SEO title="404 Not Found - kushvith.com" description="The page you were looking for could not be found." />
+      <SEO
+        title="404 — Page Not Found | Litheesh Velakaturi Portfolio"
+        description="The page you were looking for could not be found. Head back to Litheesh Velakaturi's portfolio homepage."
+        canonical="https://litheesh.dev/404"
+        robots="noindex, follow"
+      />
       <div className="w-full h-screen flex flex-col md:flex-row items-center justify-center gap-8 px-8">
         <div className="md:w-1/2 h-[350px] md:h-[500px]">
           <EarthCanvas />

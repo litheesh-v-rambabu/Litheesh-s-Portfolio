@@ -1,8 +1,0 @@
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Brush stroke circular background with slight irregularity -->
-  <circle cx="100" cy="100" r="88" fill="#E63946" stroke="none" opacity="0.95"/>
-  <circle cx="98" cy="102" r="85" fill="#E63946" stroke="none" opacity="0.1"/>
-
-  <!-- White K cutout -->
-  <path d="M 68 52 L 86 52 L 86 86 L 118 52 L 142 52 L 106 92 L 145 148 L 121 148 L 86 106 L 86 148 L 68 148 Z" fill="white"/>
-</svg>

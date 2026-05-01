@@ -4,9 +4,13 @@ import { useEffect } from "react";
 
 // Import all necessary components and pages
 import { Navbar, Footer, StarsCanvas, Hero } from "./components";
+import Chatbot from "./components/Chatbot";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
+import ExperiencePage from "./pages/ExperiencePage";
 import ProjectsPage from "./pages/ProjectsPage";
+import CertificationsPage from "./pages/CertificationsPage";
+import AchievementsPage from "./pages/AchievementsPage";
 import ContactPage from "./pages/ContactPage";
 import NotFoundPage from "./pages/NotFoundPage";
 // This helper component ensures that when you navigate to a new page, you start at the top.
@@ -43,6 +47,9 @@ const PageLayout = () => {
         <StarsCanvas />
         <Footer />
       </div>
+
+      {/* SHISIYA — AI Chatbot (floats on every page) */}
+      <Chatbot />
     </div>
   );
 };
@@ -57,9 +64,12 @@ const App = () => {
           <Route element={<PageLayout />}>
             <Route path='/' element={<HomePage />} />
             <Route path='/about' element={<AboutPage />} />
+            <Route path='/experience' element={<ExperiencePage />} />
             <Route path='/projects' element={<ProjectsPage />} />
+            <Route path='/certifications' element={<CertificationsPage />} />
+            <Route path='/achievements' element={<AchievementsPage />} />
             <Route path='/contact' element={<ContactPage />} />
-             <Route path='*' element={<NotFoundPage />} />
+            <Route path='*' element={<NotFoundPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

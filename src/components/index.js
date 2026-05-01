@@ -10,6 +10,9 @@ import Contact from "./Contact";
 import CanvasLoader from "./Loader";
 import AllProjects from './AllProjects';
 import Footer from './Footer';
+import Certifications from './Certifications';
+import Achievements from './Achievements';
+
 export {
   Hero,
   Navbar,
@@ -20,10 +23,12 @@ export {
   Feedbacks,
   Contact,
   CanvasLoader,
-  EarthCanvas, 
-  Ball, 
-  ComputersCanvas, 
+  EarthCanvas,
+  Ball,
+  ComputersCanvas,
   StarsCanvas,
   AllProjects,
   Footer,
+  Certifications,
+  Achievements,
 };

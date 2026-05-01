@@ -1,57 +1,50 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // For the "Back" button
+import { Link } from "react-router-dom";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
-import { fadeIn, textVariant } from "../utils/motion";
-import { ProjectCard } from "./Works"; // We will export ProjectCard from Works.jsx
+import { textVariant } from "../utils/motion";
+import ProjectsGrid from "./ProjectsGrid";
 
 const AllProjects = () => {
-return (
+  const aimlProjects = projects.filter((p) => p.category === "aiml");
+  const webProjects  = projects.filter((p) => p.category === "web");
+
+  return (
     <>
-        <motion.div
-        //  variants={textVariant()}
-         >
-            <p className={`${styles.sectionSubText} `}>My work</p>
-            <h2 className={`${styles.sectionHeadText}`}>All Projects.</h2>
-        </motion.div>
+      <motion.div variants={textVariant()}>
+        <p className={styles.sectionSubText}>My work</p>
+        <h2 className={styles.sectionHeadText}>All Projects.</h2>
+      </motion.div>
 
-        <div className='w-full flex'>
-            <motion.p
-                // variants={fadeIn("", "", 0.1, 1)}
-                className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
-            >
-                Here is a complete showcase of my projects, demonstrating my skills
-                and experience through real-world examples. Each project is briefly
-                described and includes links to the code repository and, where
-                available, a live demo.
-            </motion.p>
-        </div>
+      <p className="mt-3 text-secondary text-[15px] max-w-2xl leading-relaxed">
+        {aimlProjects.length} AI/ML systems and {webProjects.length} web
+        projects — built with measurable impact and shipped to production.
+      </p>
 
-        <div className='mt-20 flex flex-wrap gap-7'>
-            {projects.map((project, index) => (
-                <ProjectCard key={`project-${index}`} index={index} {...project} />
-            ))}
-        </div>
+      <div className="mt-10">
+        <ProjectsGrid aimlProjects={aimlProjects} webProjects={webProjects} />
+      </div>
 
-        <div className='mt-20 flex justify-center'>
-            <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-                <Link
-                    to='/'
-                    className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary hover:bg-secondary transition-colors duration-300'
-                >
-                    &larr; Back to Home
-                </Link>
-            </motion.div>
-        </div>
+      {/* Back button */}
+      <div className="mt-14 flex justify-center">
+        <Link
+          to="/"
+          className="px-8 py-3 rounded-xl text-white font-semibold text-[14px] flex items-center gap-2 transition-colors duration-200"
+          style={{
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.09)")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.05)")}
+        >
+          ← Back to Home
+        </Link>
+      </div>
     </>
-);
+  );
 };
 
 export default SectionWrapper(AllProjects, "");

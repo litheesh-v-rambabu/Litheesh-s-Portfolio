@@ -1,52 +1,95 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { styles } from "../styles";
 import { contacts } from "../constants";
-import { fadeIn } from "../utils/motion";
 
 const Footer = () => {
-  const socialLinks = contacts.filter((contact) => contact.type === "link");
+  const socialLinks = contacts.filter((c) => c.type === "link");
+  const emailContact = contacts.find((c) => c.type === "copy" && c.value?.includes("@"));
 
   return (
-    <motion.footer
-      variants={fadeIn("", "tween", 0.2, 0.5)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
-      className={`${styles.paddingX} w-full py-8 bg-black-100/50`}
-    >
-      <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
-        <div className="text-center sm:text-left">
-          <p className="text-secondary text-sm">
-            &copy; {new Date().getFullYear()} Kushvith. All rights reserved.
-          </p>
-          <div className="mt-2 flex gap-4 justify-center sm:justify-start">
-            <Link to="/privacy-policy" className="text-secondary text-sm hover:text-white">
-              Privacy Policy
-            </Link>
-          </div>
-        </div>
+    <footer className="relative w-full">
+      {/* Gradient top border */}
+      <div
+        className="w-full h-[1px]"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, #00cea8 30%, #bf61ff 70%, transparent 100%)",
+        }}
+      />
 
-        <div className="flex flex-row gap-6">
-          {socialLinks.map((contact) => (
-            <a
-              key={contact.name}
-              href={contact.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform hover:scale-125"
-            >
-              <img
-                src={contact.icon}
-                alt={contact.name}
-                className="w-7 h-7 object-contain"
-              />
-            </a>
-          ))}
+      <div className="w-full bg-[#050816]/80 backdrop-blur-sm py-8 sm:py-10 px-6 sm:px-16">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
+
+          {/* ── Branding ── */}
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+              <span
+                className=" font-black text-[20px] xs:text-[32px] sm:text-[24px] leading-tight"
+                style={{
+                  background: "transparent",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "white",
+                  backgroundClip: "text",
+                }}
+              >
+                Litheesh V R
+              </span>
+            </Link>
+            <p className="text-secondary text-[12px]">AI &amp; ML Engineer</p>
+            <p className="text-[#4b5563] text-[11px] mt-0.5">
+              Built with ✌️
+            </p>
+          </div>
+
+          {/* ── Icons + copyright ── */}
+          <div className="flex flex-col items-center sm:items-end gap-3">
+
+            {/* Social + Email icons */}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((contact) => (
+                <motion.a
+                  key={contact.name}
+                  href={contact.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  title={contact.name}
+                  className="opacity-70 hover:opacity-100 transition-opacity duration-200"
+                >
+                  <img
+                    src={contact.icon}
+                    alt={contact.name}
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.a>
+              ))}
+
+              {/* Email icon */}
+              {emailContact && (
+                <motion.a
+                  href={emailContact.link}
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  title={emailContact.value}
+                  className="opacity-70 hover:opacity-100 transition-opacity duration-200"
+                >
+                  <img
+                    src={emailContact.icon}
+                    alt="Email"
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.a>
+              )}
+            </div>
+
+            <p className="text-[#4b5563] text-[11px]">
+              &copy; {new Date().getFullYear()} Litheesh. All rights reserved.
+            </p>
+          </div>
+
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 

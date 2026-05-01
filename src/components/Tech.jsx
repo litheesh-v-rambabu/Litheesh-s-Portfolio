@@ -80,7 +80,7 @@ const Tech = () => {
         </h2>
       </div>
 
-      <div ref={ref} className="w-full h-screen">
+      <div ref={ref} className="w-full h-[60vh] sm:h-[80vh] md:h-screen">
         {inView && (
           <Canvas
             frameloop="always"

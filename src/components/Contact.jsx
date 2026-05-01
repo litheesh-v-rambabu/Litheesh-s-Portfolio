@@ -7,25 +7,56 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+const inputBase =
+  "w-full py-3 px-4 sm:py-4 sm:px-5 rounded-xl text-white text-[13px] sm:text-[14px] font-medium outline-none transition-all duration-200 placeholder:text-[#6b7280]";
+const inputStyle = {
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.10)",
+};
+const inputFocusStyle = {
+  background: "rgba(255,255,255,0.07)",
+  border: "1px solid rgba(0,206,168,0.5)",
+  boxShadow: "0 0 0 3px rgba(0,206,168,0.08)",
+};
+
+const FloatInput = ({ label, ...props }) => {
+  const [focused, setFocused] = useState(false);
+  return (
+    <label className="flex flex-col gap-2">
+      <span className="text-[13px] font-semibold text-[#aaa6c3] uppercase tracking-wider">
+        {label}
+      </span>
+      {props.textarea ? (
+        <textarea
+          rows={4}
+          className={`${inputBase} resize-none`}
+          style={focused ? inputFocusStyle : inputStyle}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          {...props}
+          textarea={undefined}
+        />
+      ) : (
+        <input
+          className={inputBase}
+          style={focused ? inputFocusStyle : inputStyle}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          {...props}
+        />
+      )}
+    </label>
+  );
+};
+
 const Contact = () => {
   const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,95 +68,112 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
           from_name: form.name,
-          to_name: "JavaScript Mastery",
+          to_name: "Litheesh",
           from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
+          to_email: "litheesh@buffalo.edu",
           message: form.message,
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
-        }
-      );
+      .then(() => {
+        setLoading(false);
+        setSent(true);
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setSent(false), 5000);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.error(err);
+        alert("Something went wrong. Please try again.");
+      });
   };
 
   return (
-    <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
-    >
-      <motion.div
-        // variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
-      >
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+    <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
 
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
-        >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Name</span>
-            <input
-              type='text'
-              name='name'
+      {/* ── Form card ── */}
+      {/* Outer gradient border wrapper */}
+      <motion.div
+        variants={slideIn("left", "tween", 0.2, 1)}
+        className="flex-[0.75] green-pink-gradient p-[1px] rounded-2xl shadow-card"
+      >
+        <div className="bg-[#0d1226] rounded-2xl p-6 sm:p-8 md:p-10">
+
+          <p className={styles.sectionSubText}>Get in touch</p>
+          <h3 className={styles.sectionHeadText}>Contact.</h3>
+
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="mt-10 flex flex-col gap-6"
+          >
+            <FloatInput
+              label="Your Name"
+              type="text"
+              name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="Litheesh Velakaturi"
+              required
             />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your email</span>
-            <input
-              type='email'
-              name='email'
+            <FloatInput
+              label="Email Address"
+              type="email"
+              name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="yourmail@gmail.com"
+              required
             />
-          </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>Your Message</span>
-            <textarea
-              rows={7}
-              name='message'
+            <FloatInput
+              label="Message"
+              textarea
+              name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              placeholder="What would you like to discuss?"
+              required
             />
-          </label>
 
-          <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
-        </form>
+            {/* Submit */}
+            <div className="flex items-center gap-4">
+              <button
+                type="submit"
+                disabled={loading}
+                className="green-pink-gradient p-[1px] rounded-xl shadow-card w-fit"
+              >
+                <div
+                  className="bg-[#0d1226] hover:bg-[#131830] transition-colors duration-200 rounded-xl px-8 py-3 text-white font-semibold text-[14px] flex items-center gap-2 min-w-[130px] justify-center"
+                >
+                  {loading ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    "Send Message →"
+                  )}
+                </div>
+              </button>
+
+              {sent && (
+                <motion.p
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-[#00cea8] text-[13px] font-medium"
+                >
+                  ✓ Message sent! I'll get back to you soon.
+                </motion.p>
+              )}
+            </div>
+          </form>
+        </div>
       </motion.div>
 
+      {/* ── Earth canvas ── */}
       <motion.div
-        // variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        variants={slideIn("right", "tween", 0.2, 1)}
+        className="xl:flex-1 xl:h-auto md:h-[550px] h-[260px] sm:h-[320px]"
       >
         <EarthCanvas />
       </motion.div>

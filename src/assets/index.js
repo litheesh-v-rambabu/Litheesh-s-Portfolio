@@ -1,4 +1,5 @@
-import logo from "./logo.svg";
+
+import logo from "./logo.png";
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -51,6 +52,9 @@ import phone from "./phone.png";
 import copy from "./copy.png"; 
 import blockstats from "./project/blockstats.png";
 import isanghanminds from "./project/isanghanminds.png";
+import isanghan_minds from "./company/isanghan_minds.png";
+import esi_software   from "./company/esi_software.png";
+import coincent       from "./company/coincent.png";
 export {
   angular,
   aws,
@@ -102,4 +106,7 @@ export {
   copy,
   blockstats,
   isanghanminds,
+  coincent,
+  esi_software,
+  isanghan_minds
 };
