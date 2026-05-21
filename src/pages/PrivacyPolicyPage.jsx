@@ -31,7 +31,7 @@ const PrivacyPolicyPage = () => {
           <p>The data collected is used solely for the purpose of understanding website traffic and improving the user experience on my portfolio. It helps me understand which pages are popular and where my visitors are coming from.</p>
           
           <h2 className="text-white text-2xl font-bold pt-4">Contact Form Data</h2>
-          <p>If you choose to contact me via the contact form, the name, email, and message you provide will be stored securely in a database to allow me to respond to your inquiry.</p>
+          <p>If you choose to contact me via the contact form, the name, email, and message you provide are sent to me by email so I can respond to your inquiry. This information is not stored in a database.</p>
 
            <h2 className="text-white text-2xl font-bold pt-4">Your Rights</h2>
           <p>You have the right to request access to or deletion of your personal data. Please contact me if you wish to do so.</p>

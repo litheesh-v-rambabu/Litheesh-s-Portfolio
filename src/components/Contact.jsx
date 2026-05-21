@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -49,43 +48,47 @@ const FloatInput = ({ label, ...props }) => {
   );
 };
 
+const CONTACT_API_URL =
+  import.meta.env.VITE_CONTACT_API_URL || "/api/contact.php";
+
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
+    setSent(false);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Litheesh",
-          from_email: form.email,
-          to_email: "litheesh@buffalo.edu",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(() => {
-        setLoading(false);
-        setSent(true);
-        setForm({ name: "", email: "", message: "" });
-        setTimeout(() => setSent(false), 5000);
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.error(err);
-        alert("Something went wrong. Please try again.");
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Something went wrong. Please try again.");
+      }
+
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setSent(false), 5000);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -163,6 +166,16 @@ const Contact = () => {
                   className="text-[#00cea8] text-[13px] font-medium"
                 >
                   ✓ Message sent! I'll get back to you soon.
+                </motion.p>
+              )}
+
+              {error && (
+                <motion.p
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-[#f27272] text-[13px] font-medium"
+                >
+                  {error}
                 </motion.p>
               )}
             </div>

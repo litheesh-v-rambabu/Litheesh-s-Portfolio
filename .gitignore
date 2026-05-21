@@ -25,5 +25,8 @@ dist-ssr
 
 .env
 
+# PHP contact API secrets
+api/config.php
+
 # vscode
 .vscodeKNOWLEDGE_TREE.md

@@ -1,0 +1,4 @@
+# Allow direct access only to contact.php
+<FilesMatch "^(config\.php|config\.example\.php|composer\.(json|lock))$">
+    Require all denied
+</FilesMatch>

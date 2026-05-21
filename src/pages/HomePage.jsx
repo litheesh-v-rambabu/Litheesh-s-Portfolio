@@ -245,37 +245,38 @@ const HomePage = () => {
             }}
           />
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <p className="text-secondary text-[13px] uppercase tracking-widest mb-1">
-              Reach out
-            </p>
-            <h2 className="text-white font-black text-[28px] xs:text-[32px] sm:text-[40px] leading-tight">
-              Let's connect.
-            </h2>
-            <p className="text-secondary text-[14px] mt-2 max-w-sm leading-relaxed">
-              Always open to new opportunities, collaborations, or a good
-              conversation about AI.
-            </p>
-          </motion.div>
+          <div className="flex flex-col gap-6 sm:gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className="text-secondary text-[13px] uppercase tracking-widest mb-1">
+                Reach out
+              </p>
+              <h2 className="text-white font-black text-[28px] xs:text-[32px] sm:text-[40px] leading-tight">
+                Let's connect.
+              </h2>
+              <p className="text-secondary text-[14px] mt-2 max-w-sm leading-relaxed">
+                Always open to new opportunities, collaborations, or a good
+                conversation about AI.
+              </p>
+            </motion.div>
 
-          {/* Social link cards */}
-          <div className="flex flex-wrap gap-3 sm:gap-4">
-            {linkContacts.map((c, i) => (
-              <LinkCard key={c.name + i} {...c} index={i} />
-            ))}
-          </div>
+            {/* Social link cards */}
+            <div className="flex flex-wrap gap-3 sm:gap-4">
+              {linkContacts.map((c, i) => (
+                <LinkCard key={c.name + i} {...c} index={i} />
+              ))}
+            </div>
 
-          {/* Copyable contact details */}
-          <div className="flex flex-col gap-2 sm:gap-3 max-w-lg">
-            {copyContacts.map((c, i) => (
-              <CopyRow key={c.value} {...c} index={i} />
-            ))}
+            {/* Copyable contact details */}
+            <div className="flex flex-col gap-2 sm:gap-3 max-w-lg">
+              {copyContacts.map((c, i) => (
+                <CopyRow key={c.value} {...c} index={i} />
+              ))}
+            </div>
           </div>
         </section>
 

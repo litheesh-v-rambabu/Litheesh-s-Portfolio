@@ -1,6 +1,6 @@
 # Litheesh V R — Personal Portfolio
 
-A personal portfolio website built with React and Vite, featuring 3D animations, multi-page routing, and an EmailJS-powered contact form. Live at [litheesh.com](https://litheesh.com).
+A personal portfolio website built with React and Vite, featuring 3D animations, multi-page routing, and a PHP SMTP contact form. Live at [litheesh.com](https://litheesh.com).
 
 ---
 
@@ -11,7 +11,7 @@ A personal portfolio website built with React and Vite, featuring 3D animations,
 - **3D Graphics**: Three.js, @react-three/fiber, @react-three/drei
 - **Animations**: Framer Motion
 - **Styling**: Tailwind CSS
-- **Contact Form**: EmailJS
+- **Contact Form**: PHP + PHPMailer (SMTP)
 - **SEO**: React Helmet Async
 - **Runtime**: Node v22.22.0 / npm v10.9.4
 
@@ -54,6 +54,10 @@ Lithi's_portflio/
 ├── tailwind.config.cjs
 ├── postcss.config.cjs
 ├── package.json
+├── api/
+│   ├── contact.php          ← SMTP contact endpoint
+│   ├── config.example.php   ← Copy to config.php and add credentials
+│   └── vendor/              ← PHPMailer (included)
 └── src/
     ├── main.jsx
     ├── App.jsx
@@ -102,7 +106,7 @@ Lithi's_portflio/
 
 ## Getting Started
 
-**Prerequisites**: Node v22+ and npm v10+
+**Prerequisites**: Node v22+ and npm v10+. For the contact form locally: PHP 8+.
 
 ```bash
 # 1. Clone the repository
@@ -110,11 +114,18 @@ git clone https://github.com/your-username/your-repo-name.git
 cd "Lithi's_portflio"
 
 # 2. Install dependencies
-npm install
+npm install --legacy-peer-deps
 
-# 3. Start the development server
+# 3. Configure the contact API
+cp api/config.example.php api/config.php
+# Edit api/config.php with your SMTP host, username, and app password
+
+# 4. Start the PHP API (terminal 1)
+npm run dev:api
+
+# 5. Start the frontend (terminal 2)
 npm run dev
-# Runs at http://localhost:5173
+# Runs at http://localhost:5173 — form requests proxy to the PHP API
 ```
 
 ---
@@ -124,8 +135,30 @@ npm run dev
 | Command | Description |
 |---|---|
 | `npm run dev` | Start local dev server with hot reload |
+| `npm run dev:api` | Start PHP API at `http://127.0.0.1:8080` for contact form |
 | `npm run build` | Build optimized production bundle to `dist/` |
 | `npm run preview` | Serve the production build locally at port 4173 |
+
+---
+
+## Contact Form (SMTP)
+
+The contact form posts JSON to `/api/contact.php`, which sends email via SMTP using PHPMailer.
+
+**Local setup**
+
+1. Copy `api/config.example.php` to `api/config.php`.
+2. Fill in SMTP settings (Gmail example: host `smtp.gmail.com`, port `587`, encryption `tls`, and a Google [App Password](https://myaccount.google.com/apppasswords)).
+3. Run `npm run dev:api` and `npm run dev` in separate terminals.
+
+**Production deployment (PHP hosting)**
+
+1. Upload the built `dist/` files and the entire `api/` folder to your web root.
+2. Create `api/config.php` on the server with production SMTP credentials.
+3. Ensure your domain is listed in `allowed_origins` inside `config.php`.
+4. Confirm `https://yourdomain.com/api/contact.php` is reachable.
+
+If you prefer Composer on the server instead of the bundled vendor folder, run `composer install` inside `api/` and remove the committed `vendor/` directory.
 
 ---
 

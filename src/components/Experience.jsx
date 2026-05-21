@@ -16,7 +16,8 @@ const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
-        background: "linear-gradient(#1d1836, #1d1836) padding-box, linear-gradient(135deg, #00cea8 0%, #bf61ff 100%) border-box",
+        background:
+          "linear-gradient(#1d1836, #1d1836) padding-box, linear-gradient(135deg, #00cea8 0%, #bf61ff 100%) border-box",
         color: "#fff",
         border: "1px solid transparent",
         boxShadow: "0 4px 32px rgba(0,0,0,0.4), 0 0 0 0px transparent",
@@ -36,7 +37,6 @@ const ExperienceCard = ({ experience }) => {
               className="w-[60%] h-[60%] object-contain"
             />
           ) : (
-            // Fallback: first letter of company name
             <span className="text-white font-bold text-[16px] sm:text-[20px]">
               {(experience.company_name || experience.title || "?")[0]}
             </span>
@@ -45,21 +45,68 @@ const ExperienceCard = ({ experience }) => {
       }
     >
       <div>
-        <h3 className="text-white text-[18px] sm:text-[22px] font-bold leading-snug">
+        <h3
+          style={{
+            color: "#ffffff",
+            fontSize: "20px",
+            fontWeight: 700,
+            lineHeight: 1.35,
+            margin: 0,
+          }}
+        >
           {experience.title}
         </h3>
+
         {experience.company_name && (
-          <p className="text-secondary text-[13px] sm:text-[15px] font-semibold mt-1" style={{ margin: 0 }}>
+          <div
+            style={{
+              color: "#aaa6c3",
+              fontSize: "14px",
+              fontWeight: 600,
+              marginTop: "4px",
+              lineHeight: 1.4,
+            }}
+          >
             {experience.company_name}
-          </p>
+          </div>
+        )}
+
+        {experience.location && (
+          <div
+            style={{
+              color: "#00cea8",
+              fontSize: "13px",
+              fontWeight: 500,
+              marginTop: "6px",
+              lineHeight: 1.4,
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+            }}
+          >
+            <span aria-hidden="true">📍</span>
+            <span>{experience.location}</span>
+          </div>
         )}
       </div>
 
-      <ul className="mt-4 list-disc ml-4 sm:ml-5 space-y-2">
+      <ul
+        style={{
+          marginTop: "16px",
+          paddingLeft: "20px",
+          listStyle: "disc",
+        }}
+      >
         {experience.points.map((point, index) => (
           <li
             key={`experience-point-${index}`}
-            className="text-white-100 text-[12px] sm:text-[13px] pl-1 tracking-wide leading-relaxed"
+            style={{
+              color: "#f3f3f3",
+              fontSize: "13px",
+              lineHeight: 1.6,
+              marginBottom: "8px",
+              letterSpacing: "0.01em",
+            }}
           >
             {point}
           </li>

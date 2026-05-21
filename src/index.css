@@ -175,6 +175,12 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Experience timeline overrides ────────────────────────────────────────── */
+.vertical-timeline-element-content .vertical-timeline-element-date {
+  opacity: 1 !important;
+  color: #aaa6c3 !important;
+}
+
 /* canvas- styles */
 .canvas-loader {
   font-size: 10px;
