@@ -16,16 +16,16 @@ const NeuralNodeLogo = ({ size = 36 }) => (
   >
     <defs>
       <linearGradient id="nn-center-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stopColor="#00cea8" />
-        <stop offset="100%" stopColor="#bf61ff" />
+        <stop offset="0%"   stopColor="#7cf2c9" />
+        <stop offset="100%" stopColor="#8f7bff" />
       </linearGradient>
       <linearGradient id="nn-line-teal" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stopColor="#00cea8" stopOpacity="0.9" />
-        <stop offset="100%" stopColor="#00cea8" stopOpacity="0.2" />
+        <stop offset="0%"   stopColor="#7cf2c9" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#7cf2c9" stopOpacity="0.2" />
       </linearGradient>
       <linearGradient id="nn-line-purple" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stopColor="#bf61ff" stopOpacity="0.9" />
-        <stop offset="100%" stopColor="#bf61ff" stopOpacity="0.2" />
+        <stop offset="0%"   stopColor="#8f7bff" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#8f7bff" stopOpacity="0.2" />
       </linearGradient>
       <filter id="nn-glow" x="-40%" y="-40%" width="180%" height="180%">
         <feGaussianBlur stdDeviation="1.8" result="blur" />
@@ -51,30 +51,30 @@ const NeuralNodeLogo = ({ size = 36 }) => (
     <line x1="30" y1="30" x2="7"  y2="20" stroke="url(#nn-line-teal)"   strokeWidth="0.9" />
 
     {/* ── Cross connections between outer nodes ── */}
-    <line x1="30"  y1="6"  x2="53" y2="17" stroke="#00cea8" strokeWidth="0.5" opacity="0.28" />
-    <line x1="53"  y1="17" x2="54" y2="43" stroke="#bf61ff" strokeWidth="0.5" opacity="0.25" />
-    <line x1="7"   y1="20" x2="11" y2="48" stroke="#00cea8" strokeWidth="0.5" opacity="0.25" />
-    <line x1="11"  y1="48" x2="54" y2="43" stroke="#bf61ff" strokeWidth="0.5" opacity="0.22" />
+    <line x1="30"  y1="6"  x2="53" y2="17" stroke="#7cf2c9" strokeWidth="0.5" opacity="0.28" />
+    <line x1="53"  y1="17" x2="54" y2="43" stroke="#8f7bff" strokeWidth="0.5" opacity="0.25" />
+    <line x1="7"   y1="20" x2="11" y2="48" stroke="#7cf2c9" strokeWidth="0.5" opacity="0.25" />
+    <line x1="11"  y1="48" x2="54" y2="43" stroke="#8f7bff" strokeWidth="0.5" opacity="0.22" />
 
     {/* ── Outer nodes ── */}
     {/* Top */}
-    <circle cx="30" cy="6"  r="3.8" fill="#00cea8" filter="url(#nn-glow)" opacity="0.95">
+    <circle cx="30" cy="6"  r="3.8" fill="#7cf2c9" filter="url(#nn-glow)" opacity="0.95">
       <animate attributeName="opacity" values="0.95;0.55;0.95" dur="2.8s" repeatCount="indefinite" />
     </circle>
     {/* Top-right */}
-    <circle cx="53" cy="17" r="3.2" fill="#00cea8" opacity="0.8">
+    <circle cx="53" cy="17" r="3.2" fill="#7cf2c9" opacity="0.8">
       <animate attributeName="opacity" values="0.8;0.4;0.8" dur="3.2s" begin="0.4s" repeatCount="indefinite" />
     </circle>
     {/* Bottom-right */}
-    <circle cx="54" cy="43" r="3.2" fill="#bf61ff" filter="url(#nn-glow)" opacity="0.85">
+    <circle cx="54" cy="43" r="3.2" fill="#8f7bff" filter="url(#nn-glow)" opacity="0.85">
       <animate attributeName="opacity" values="0.85;0.45;0.85" dur="2.5s" begin="0.8s" repeatCount="indefinite" />
     </circle>
     {/* Bottom-left */}
-    <circle cx="11" cy="48" r="3.2" fill="#bf61ff" opacity="0.8">
+    <circle cx="11" cy="48" r="3.2" fill="#8f7bff" opacity="0.8">
       <animate attributeName="opacity" values="0.8;0.4;0.8" dur="3.6s" begin="1.2s" repeatCount="indefinite" />
     </circle>
     {/* Left */}
-    <circle cx="7" cy="20"  r="3.5" fill="#00cea8" filter="url(#nn-glow)" opacity="0.9">
+    <circle cx="7" cy="20"  r="3.5" fill="#7cf2c9" filter="url(#nn-glow)" opacity="0.9">
       <animate attributeName="opacity" values="0.9;0.5;0.9" dur="3s" begin="0.6s" repeatCount="indefinite" />
     </circle>
 
@@ -136,7 +136,7 @@ const GlitchMonogramLogo = ({ size = 36 }) => (
           keyTimes="0; 0.1; 0.2; 0.74; 0.78; 0.80; 0.82; 0.88; 0.90; 0.93; 0.95; 1"
           dur="5s" repeatCount="indefinite"
         />
-        <text x="30" y="44" textAnchor="middle" fill="#00cea8"
+        <text x="30" y="44" textAnchor="middle" fill="#7cf2c9"
           fontSize="38" fontWeight="800"
           fontFamily="'Segoe UI','Inter',system-ui,sans-serif"
           opacity="0.75">L</text>
@@ -151,7 +151,7 @@ const GlitchMonogramLogo = ({ size = 36 }) => (
           keyTimes="0; 0.1; 0.2; 0.70; 0.74; 0.76; 0.82; 0.86; 0.89; 0.92; 0.95; 1"
           dur="5s" repeatCount="indefinite"
         />
-        <text x="30" y="44" textAnchor="middle" fill="#00cea8"
+        <text x="30" y="44" textAnchor="middle" fill="#7cf2c9"
           fontSize="38" fontWeight="800"
           fontFamily="'Segoe UI','Inter',system-ui,sans-serif"
           opacity="0.75">L</text>
@@ -167,7 +167,7 @@ const GlitchMonogramLogo = ({ size = 36 }) => (
           keyTimes="0; 0.1; 0.2; 0.74; 0.78; 0.80; 0.82; 0.88; 0.90; 0.93; 0.95; 1"
           dur="5s" repeatCount="indefinite"
         />
-        <text x="30" y="44" textAnchor="middle" fill="#bf61ff"
+        <text x="30" y="44" textAnchor="middle" fill="#8f7bff"
           fontSize="38" fontWeight="800"
           fontFamily="'Segoe UI','Inter',system-ui,sans-serif"
           opacity="0.8">L</text>
@@ -186,7 +186,7 @@ const GlitchMonogramLogo = ({ size = 36 }) => (
     >L</text>
 
     {/* ── Glitch scan lines — flash briefly on burst ── */}
-    <rect x="12" y="27" width="36" height="1.5" fill="#00cea8" opacity="0">
+    <rect x="12" y="27" width="36" height="1.5" fill="#7cf2c9" opacity="0">
       <animate attributeName="opacity"
         values="0;0;0;0;0.55;0;0;0;0;0.3;0;0"
         keyTimes="0;0.1;0.2;0.74;0.78;0.80;0.82;0.88;0.90;0.93;0.95;1"
@@ -196,7 +196,7 @@ const GlitchMonogramLogo = ({ size = 36 }) => (
         keyTimes="0;0.1;0.2;0.74;0.78;0.80;0.82;0.88;0.90;0.93;0.95;1"
         dur="5s" repeatCount="indefinite" />
     </rect>
-    <rect x="12" y="35" width="28" height="1" fill="#bf61ff" opacity="0">
+    <rect x="12" y="35" width="28" height="1" fill="#8f7bff" opacity="0">
       <animate attributeName="opacity"
         values="0;0;0;0;0.45;0;0;0;0;0.3;0;0"
         keyTimes="0;0.1;0.2;0.76;0.80;0.82;0.84;0.90;0.92;0.94;0.96;1"
@@ -305,8 +305,8 @@ const TypewriterCursorLogo = ({ size = 52 }) => (
   >
     <defs>
       <linearGradient id="tw-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stopColor="#00cea8" />
-        <stop offset="100%" stopColor="#bf61ff" />
+        <stop offset="0%"   stopColor="#7cf2c9" />
+        <stop offset="100%" stopColor="#8f7bff" />
       </linearGradient>
       <filter id="tw-glow" x="-20%" y="-20%" width="140%" height="140%">
         <feGaussianBlur stdDeviation="1.5" result="blur" />
@@ -351,17 +351,17 @@ const OrbitInitialLogo = ({ size = 36 }) => (
   >
     <defs>
       <linearGradient id="oi-letter-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%"   stopColor="#00cea8" />
-        <stop offset="100%" stopColor="#bf61ff" />
+        <stop offset="0%"   stopColor="#7cf2c9" />
+        <stop offset="100%" stopColor="#8f7bff" />
       </linearGradient>
       <linearGradient id="oi-ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stopColor="#00cea8" stopOpacity="0.9" />
-        <stop offset="45%"  stopColor="#bf61ff" stopOpacity="0.6" />
-        <stop offset="100%" stopColor="#00cea8" stopOpacity="0.1" />
+        <stop offset="0%"   stopColor="#7cf2c9" stopOpacity="0.9" />
+        <stop offset="45%"  stopColor="#8f7bff" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#7cf2c9" stopOpacity="0.1" />
       </linearGradient>
       <radialGradient id="oi-glow-bg" cx="50%" cy="50%" r="50%">
-        <stop offset="0%"   stopColor="#00cea8" stopOpacity="0.12" />
-        <stop offset="100%" stopColor="#00cea8" stopOpacity="0"    />
+        <stop offset="0%"   stopColor="#7cf2c9" stopOpacity="0.12" />
+        <stop offset="100%" stopColor="#7cf2c9" stopOpacity="0"    />
       </radialGradient>
       <filter id="oi-letter-glow" x="-40%" y="-40%" width="180%" height="180%">
         <feGaussianBlur stdDeviation="2" result="blur" />
@@ -394,7 +394,7 @@ const OrbitInitialLogo = ({ size = 36 }) => (
     />
 
     {/* ── Orbiting dot — travels along the ring ── */}
-    <circle cx="56" cy="30" r="3" fill="#00cea8" filter="url(#oi-dot-glow)">
+    <circle cx="56" cy="30" r="3" fill="#7cf2c9" filter="url(#oi-dot-glow)">
       <animateTransform
         attributeName="transform"
         type="rotate"
@@ -403,7 +403,7 @@ const OrbitInitialLogo = ({ size = 36 }) => (
         dur="3.5s"
         repeatCount="indefinite"
       />
-      <animate attributeName="fill" values="#00cea8;#bf61ff;#00cea8" dur="3.5s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#7cf2c9;#8f7bff;#7cf2c9" dur="3.5s" repeatCount="indefinite" />
     </circle>
 
     {/* ── "L" letter — bold, gradient, glowing ── */}
@@ -485,7 +485,7 @@ const Navbar = () => {
               style={{ background: "#0d1226", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               {/* Gradient top accent */}
-              <div className="h-[2px] w-full" style={{ background: "linear-gradient(90deg, #00cea8, #bf61ff)" }} />
+              <div className="h-[2px] w-full" style={{ background: "linear-gradient(90deg, #7cf2c9, #8f7bff)" }} />
 
               <ul className="flex flex-col py-2">
                 {navLinks.map((nav) => (

@@ -32,15 +32,15 @@ const MoonOrbSVG = ({ size = 60, isOpen = false }) => (
 
       {/* Orbit path gradient */}
       <linearGradient id="orbit-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stopColor="#00cea8" stopOpacity="0.8" />
-        <stop offset="50%"  stopColor="#bf61ff" stopOpacity="0.5" />
-        <stop offset="100%" stopColor="#00cea8" stopOpacity="0.1" />
+        <stop offset="0%"   stopColor="#7cf2c9" stopOpacity="0.8" />
+        <stop offset="50%"  stopColor="#8f7bff" stopOpacity="0.5" />
+        <stop offset="100%" stopColor="#7cf2c9" stopOpacity="0.1" />
       </linearGradient>
 
       {/* Outer aura gradient */}
       <radialGradient id="aura-grad" cx="50%" cy="50%" r="50%">
-        <stop offset="60%"  stopColor="#00cea8" stopOpacity="0" />
-        <stop offset="100%" stopColor="#00cea8" stopOpacity="0.25" />
+        <stop offset="60%"  stopColor="#7cf2c9" stopOpacity="0" />
+        <stop offset="100%" stopColor="#7cf2c9" stopOpacity="0.25" />
       </radialGradient>
 
       {/* Soft blur for glow rings */}
@@ -53,14 +53,14 @@ const MoonOrbSVG = ({ size = 60, isOpen = false }) => (
     <circle cx="30" cy="30" r="29" fill="url(#aura-grad)" filter="url(#glow-blur)" />
 
     {/* ── Halo rings ── */}
-    <circle cx="30" cy="30" r="27.5" fill="none" stroke="#00cea8" strokeWidth="0.5" opacity="0.35" />
-    <circle cx="30" cy="30" r="24"   fill="none" stroke="#bf61ff" strokeWidth="0.4" opacity="0.2"  />
+    <circle cx="30" cy="30" r="27.5" fill="none" stroke="#7cf2c9" strokeWidth="0.5" opacity="0.35" />
+    <circle cx="30" cy="30" r="24"   fill="none" stroke="#8f7bff" strokeWidth="0.4" opacity="0.2"  />
 
     {/* ── Moon body ── */}
     <circle cx="30" cy="30" r="21" fill="url(#moon-body)" />
 
     {/* ── Night-side shadow (terminator / crescent) ── */}
-    <circle cx="38" cy="30" r="20" fill="#050816" opacity="0.42" />
+    <circle cx="38" cy="30" r="20" fill="#05060a" opacity="0.42" />
 
     {/* ── Craters ── */}
     {/* Large crater */}
@@ -97,7 +97,7 @@ const MoonOrbSVG = ({ size = 60, isOpen = false }) => (
 
     {/* ── Orbiting dot — animated via SVG animateTransform ── */}
     <g transform="rotate(-28 30 30)">
-      <circle cx="58" cy="30" r="2.6" fill="#00cea8" opacity="0.9">
+      <circle cx="58" cy="30" r="2.6" fill="#7cf2c9" opacity="0.9">
         <animateTransform
           attributeName="transform"
           type="rotate"
@@ -335,7 +335,7 @@ const TypingDots = () => (
         <motion.span
           key={i}
           className="w-1.5 h-1.5 rounded-full"
-          style={{ background: "#00cea8" }}
+          style={{ background: "#7cf2c9" }}
           animate={{ y: [0, -5, 0] }}
           transition={{ duration: 0.55, delay: i * 0.15, repeat: Infinity }}
         />
@@ -413,7 +413,7 @@ const Chatbot = () => {
                        w-[calc(100vw-2rem)] sm:w-[380px]
                        flex flex-col rounded-2xl overflow-hidden shadow-2xl"
             style={{
-              background: "linear-gradient(#0d1226, #0d1226) padding-box, linear-gradient(135deg, #00cea8, #bf61ff) border-box",
+              background: "linear-gradient(#0d1226, #0d1226) padding-box, linear-gradient(135deg, #7cf2c9, #8f7bff) border-box",
               border: "1px solid transparent",
               maxHeight: "min(560px, calc(100vh - 120px))",
             }}
@@ -422,14 +422,14 @@ const Chatbot = () => {
             <div
               className="flex items-center justify-between px-4 py-3 flex-shrink-0"
               style={{
-                background: "linear-gradient(135deg, rgba(0,206,168,0.12), rgba(191,97,255,0.12))",
+                background: "linear-gradient(135deg, rgba(124, 242, 201,0.12), rgba(143, 123, 255,0.12))",
                 borderBottom: "1px solid rgba(255,255,255,0.07)",
               }}
             >
               <div className="flex items-center gap-3">
                 <div
                   className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg, rgba(0,206,168,0.15), rgba(191,97,255,0.15))", border: "1px solid rgba(0,206,168,0.3)" }}
+                  style={{ background: "linear-gradient(135deg, rgba(124, 242, 201,0.15), rgba(143, 123, 255,0.15))", border: "1px solid rgba(124, 242, 201,0.3)" }}
                 >
                   <MoonOrbSVG size={26} isOpen={false} />
                 </div>
@@ -472,7 +472,7 @@ const Chatbot = () => {
                     }`}
                     style={
                       msg.sender === "user"
-                        ? { background: "linear-gradient(135deg, #00cea8, #bf61ff)" }
+                        ? { background: "linear-gradient(135deg, #7cf2c9, #8f7bff)" }
                         : {
                             background: "rgba(255,255,255,0.06)",
                             border: "1px solid rgba(255,255,255,0.08)",
@@ -489,11 +489,11 @@ const Chatbot = () => {
                         <button
                           key={chip}
                           onClick={() => sendMessage(chip)}
-                          className="text-[11px] font-medium px-2.5 py-1 rounded-full transition-colors duration-150 hover:bg-[rgba(0,206,168,0.2)]"
+                          className="text-[11px] font-medium px-2.5 py-1 rounded-full transition-colors duration-150 hover:bg-[rgba(124, 242, 201,0.2)]"
                           style={{
-                            background: "rgba(0,206,168,0.08)",
-                            border: "1px solid rgba(0,206,168,0.25)",
-                            color: "#00cea8",
+                            background: "rgba(124, 242, 201,0.08)",
+                            border: "1px solid rgba(124, 242, 201,0.25)",
+                            color: "#7cf2c9",
                           }}
                         >
                           {chip}
@@ -527,7 +527,7 @@ const Chatbot = () => {
                 disabled={!input.trim() || isTyping}
                 whileTap={{ scale: 0.9 }}
                 className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-xl transition-opacity duration-200 disabled:opacity-30"
-                style={{ background: "linear-gradient(135deg, #00cea8, #bf61ff)" }}
+                style={{ background: "linear-gradient(135deg, #7cf2c9, #8f7bff)" }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
                   <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
@@ -551,8 +551,8 @@ const Chatbot = () => {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="mr-2 px-3 py-1.5 rounded-xl text-white text-[11px] font-bold tracking-widest select-none pointer-events-none"
               style={{
-                background: "linear-gradient(135deg, rgba(0,206,168,0.12), rgba(191,97,255,0.12))",
-                border: "1px solid rgba(0,206,168,0.28)",
+                background: "linear-gradient(135deg, rgba(124, 242, 201,0.12), rgba(143, 123, 255,0.12))",
+                border: "1px solid rgba(124, 242, 201,0.28)",
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
               }}
@@ -576,8 +576,8 @@ const Chatbot = () => {
             width: 62,
             height: 62,
             filter: isOpen
-              ? "drop-shadow(0 0 8px rgba(0,206,168,0.4)) drop-shadow(0 0 18px rgba(191,97,255,0.25))"
-              : "drop-shadow(0 0 14px rgba(0,206,168,0.65)) drop-shadow(0 0 30px rgba(191,97,255,0.4))",
+              ? "drop-shadow(0 0 8px rgba(124, 242, 201,0.4)) drop-shadow(0 0 18px rgba(143, 123, 255,0.25))"
+              : "drop-shadow(0 0 14px rgba(124, 242, 201,0.65)) drop-shadow(0 0 30px rgba(143, 123, 255,0.4))",
             transition: "filter 0.3s ease",
           }}
         >

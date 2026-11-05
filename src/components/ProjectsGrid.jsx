@@ -75,7 +75,7 @@ const Chip = ({ label }) => (
     style={{
       background: "rgba(255,255,255,0.07)",
       border: "1px solid rgba(255,255,255,0.12)",
-      color: "#aaa6c3",
+      color: "#8b93a8",
     }}
   >
     {label}

@@ -14,11 +14,11 @@ const Footer = () => {
         className="w-full h-[1px]"
         style={{
           background:
-            "linear-gradient(90deg, transparent 0%, #00cea8 30%, #bf61ff 70%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, #7cf2c9 30%, #8f7bff 70%, transparent 100%)",
         }}
       />
 
-      <div className="w-full bg-[#050816]/80 backdrop-blur-sm py-8 sm:py-10 px-6 sm:px-16">
+      <div className="w-full bg-[#05060a]/80 backdrop-blur-sm py-8 sm:py-10 px-6 sm:px-16">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6">
 
           {/* ── Branding ── */}

@@ -106,7 +106,7 @@ const FEATURED = [
 // ─── Featured Project mini-card ───────────────────────────────────────────────
 const FeaturedCard = ({ project, index }) => {
   const isAiml = project.category === "aiml";
-  const accentColor = isAiml ? "#00cea8" : "#60a5fa";
+  const accentColor = isAiml ? "#7cf2c9" : "#60a5fa";
   const topMetric = project.metrics?.[0];
 
   return (
@@ -123,7 +123,7 @@ const FeaturedCard = ({ project, index }) => {
             style={{
               background: "rgba(255,255,255,0.06)",
               border: "1px solid rgba(255,255,255,0.1)",
-              color: "#aaa6c3",
+              color: "#8b93a8",
             }}
           >
             {isAiml ? "AI / ML" : "Web Dev"}
@@ -218,7 +218,7 @@ const About = () => {
             <Link
               to="/projects"
               className="text-[13px] font-semibold mb-2 flex items-center gap-1 transition-colors duration-200"
-              style={{ color: "#00cea8" }}
+              style={{ color: "#7cf2c9" }}
             >
               View all projects →
             </Link>

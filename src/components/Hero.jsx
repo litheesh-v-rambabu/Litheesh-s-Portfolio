@@ -36,7 +36,7 @@ const Hero = () => {
             <h1
               className="font-black leading-tight text-[38px] xs:text-[46px] sm:text-[58px] lg:text-[72px]"
               style={{
-                background: "linear-gradient(90deg, #00cea8 0%, #bf61ff 100%)",
+                background: "linear-gradient(90deg, #7cf2c9 0%, #8f7bff 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -108,7 +108,7 @@ const Hero = () => {
           {/* Glow */}
           <div
             className="absolute blur-[60px] sm:blur-[80px] opacity-25 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] rounded-full"
-            style={{ background: "radial-gradient(circle, #bf61ff 0%, #00cea8 100%)" }}
+            style={{ background: "radial-gradient(circle, #8f7bff 0%, #7cf2c9 100%)" }}
           />
           <img
             src="/profile.png"
@@ -133,7 +133,7 @@ const Hero = () => {
               animate={{ y: [0, 16, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, repeatType: "loop" }}
               className="w-2 h-2 rounded-full"
-              style={{ background: "#aaa6c3" }}
+              style={{ background: "#8b93a8" }}
             />
           </div>
         </a>

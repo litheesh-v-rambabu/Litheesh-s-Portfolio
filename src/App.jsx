@@ -5,6 +5,7 @@ import { useEffect } from "react";
 // Import all necessary components and pages
 import { Navbar, Footer, StarsCanvas, Hero } from "./components";
 import Chatbot from "./components/Chatbot";
+import NeuralBackground from "./components/NeuralBackground";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ExperiencePage from "./pages/ExperiencePage";
@@ -31,7 +32,8 @@ const PageLayout = () => {
     <div className='relative z-0 bg-primary'>
       {/* The Hero background is only shown on the home page */}
       {isHomePage ? (
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+        <div className='relative overflow-hidden'>
+          <NeuralBackground />
           <Navbar />
           <Hero />
         </div>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Schibsted Grotesk", system-ui, sans-serif;
   scroll-behavior: smooth;
   color-scheme: dark;
 }
@@ -44,9 +44,9 @@
 }
 
 .green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: "#7cf2c9";
+  background: linear-gradient(90.13deg, #7cf2c9 1.9%, #8f7bff 97.5%);
+  background: -webkit-linear-gradient(-90.13deg, #7cf2c9 1.9%, #8f7bff 97.5%);
 }
 
 .orange-text-gradient {
@@ -119,19 +119,19 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050816;
+  background: #05060a;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00cea8, #bf61ff);
+  background: linear-gradient(180deg, #7cf2c9, #8f7bff);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #00cea8cc, #bf61ffcc);
+  background: linear-gradient(180deg, #7cf2c9cc, #8f7bffcc);
 }
 
 /* ── Gradient text utility ────────────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(90deg, #00cea8 0%, #bf61ff 100%);
+  background: linear-gradient(90deg, #7cf2c9 0%, #8f7bff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -139,10 +139,10 @@
 
 /* ── Glowing card shadow ──────────────────────────────────────────────────── */
 .glow-teal {
-  box-shadow: 0 0 20px rgba(0, 206, 168, 0.15);
+  box-shadow: 0 0 20px rgba(124, 242, 201, 0.15);
 }
 .glow-purple {
-  box-shadow: 0 0 20px rgba(191, 97, 255, 0.15);
+  box-shadow: 0 0 20px rgba(143, 123, 255, 0.15);
 }
 
 /* ── Section divider ──────────────────────────────────────────────────────── */
@@ -164,7 +164,7 @@
   100% { background-position: 0% 50%; }
 }
 .animated-gradient-border {
-  background: linear-gradient(270deg, #00cea8, #bf61ff, #00cea8);
+  background: linear-gradient(270deg, #7cf2c9, #8f7bff, #7cf2c9);
   background-size: 300% 300%;
   animation: gradient-shift 4s ease infinite;
 }
@@ -178,7 +178,7 @@
 /* ── Experience timeline overrides ────────────────────────────────────────── */
 .vertical-timeline-element-content .vertical-timeline-element-date {
   opacity: 1 !important;
-  color: #aaa6c3 !important;
+  color: #8b93a8 !important;
 }
 
 /* canvas- styles */

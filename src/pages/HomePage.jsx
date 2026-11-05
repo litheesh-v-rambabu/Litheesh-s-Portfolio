@@ -223,7 +223,7 @@ const HomePage = () => {
             </h2>
             <div
               className="w-12 h-[2px] rounded-full"
-              style={{ background: "linear-gradient(90deg, #00cea8, #bf61ff)" }}
+              style={{ background: "linear-gradient(90deg, #7cf2c9, #8f7bff)" }}
             />
           </motion.div>
 

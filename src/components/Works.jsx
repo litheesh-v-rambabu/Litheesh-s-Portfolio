@@ -38,7 +38,7 @@ const Works = () => {
             className="bg-[#0d1226] hover:bg-[#131830] transition-colors duration-200 rounded-xl px-8 py-3 text-white font-semibold text-[14px] flex items-center gap-2"
           >
             View All {projects.length} Projects
-            <span className="text-[#00cea8]">→</span>
+            <span className="text-[#7cf2c9]">→</span>
           </div>
         </Link>
       </div>

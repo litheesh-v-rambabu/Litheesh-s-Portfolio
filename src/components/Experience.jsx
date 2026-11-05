@@ -17,12 +17,12 @@ const ExperienceCard = ({ experience }) => {
     <VerticalTimelineElement
       contentStyle={{
         background:
-          "linear-gradient(#1d1836, #1d1836) padding-box, linear-gradient(135deg, #00cea8 0%, #bf61ff 100%) border-box",
+          "linear-gradient(#1d1836, #1d1836) padding-box, linear-gradient(135deg, #7cf2c9 0%, #8f7bff 100%) border-box",
         color: "#fff",
         border: "1px solid transparent",
         boxShadow: "0 4px 32px rgba(0,0,0,0.4), 0 0 0 0px transparent",
       }}
-      contentArrowStyle={{ borderRight: "7px solid #00cea8" }}
+      contentArrowStyle={{ borderRight: "7px solid #7cf2c9" }}
       date={experience.date}
       iconStyle={{
         background: experience.iconBg || "#1d1836",
@@ -60,7 +60,7 @@ const ExperienceCard = ({ experience }) => {
         {experience.company_name && (
           <div
             style={{
-              color: "#aaa6c3",
+              color: "#8b93a8",
               fontSize: "14px",
               fontWeight: 600,
               marginTop: "4px",
@@ -74,7 +74,7 @@ const ExperienceCard = ({ experience }) => {
         {experience.location && (
           <div
             style={{
-              color: "#00cea8",
+              color: "#7cf2c9",
               fontSize: "13px",
               fontWeight: 500,
               marginTop: "6px",

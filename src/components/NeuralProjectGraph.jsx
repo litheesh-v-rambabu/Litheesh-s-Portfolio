@@ -372,7 +372,7 @@ const NeuralProjectGraph = ({ aimlProjects, webProjects }) => {
               transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               className="mt-8 rounded-2xl overflow-hidden"
               style={{
-                background: "linear-gradient(#0b0f1e, #0b0f1e) padding-box, linear-gradient(135deg, #00cea8 0%, #bf61ff 100%) border-box",
+                background: "linear-gradient(#0b0f1e, #0b0f1e) padding-box, linear-gradient(135deg, #7cf2c9 0%, #8f7bff 100%) border-box",
                 border: "1px solid transparent",
                 boxShadow: `0 24px 64px rgba(0,0,0,0.5)`,
               }}

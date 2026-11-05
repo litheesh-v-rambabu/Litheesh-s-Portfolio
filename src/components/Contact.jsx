@@ -14,15 +14,15 @@ const inputStyle = {
 };
 const inputFocusStyle = {
   background: "rgba(255,255,255,0.07)",
-  border: "1px solid rgba(0,206,168,0.5)",
-  boxShadow: "0 0 0 3px rgba(0,206,168,0.08)",
+  border: "1px solid rgba(124, 242, 201,0.5)",
+  boxShadow: "0 0 0 3px rgba(124, 242, 201,0.08)",
 };
 
 const FloatInput = ({ label, ...props }) => {
   const [focused, setFocused] = useState(false);
   return (
     <label className="flex flex-col gap-2">
-      <span className="text-[13px] font-semibold text-[#aaa6c3] uppercase tracking-wider">
+      <span className="text-[13px] font-semibold text-[#8b93a8] uppercase tracking-wider">
         {label}
       </span>
       {props.textarea ? (
@@ -163,7 +163,7 @@ const Contact = () => {
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="text-[#00cea8] text-[13px] font-medium"
+                  className="text-[#7cf2c9] text-[13px] font-medium"
                 >
                   ✓ Message sent! I'll get back to you soon.
                 </motion.p>
