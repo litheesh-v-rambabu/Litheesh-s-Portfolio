@@ -98,9 +98,9 @@ const CopyableText = ({ icon, value, link }) => {
 
 // ─── Featured project names to highlight ─────────────────────────────────────
 const FEATURED = [
-  "AI-Powered Code Suggester in IDEs",
-  "Brain Tumor Segmentation",
-  "NLTA — Multilingual Browser Extension",
+  "Agent Flight Recorder: Failure Analysis & Regression Testing for LLM Agents",
+  "Multi-Agent RAG Platform for Support Operations",
+  "SmartSnow — Deep RL for Urban Snow Plow Routing",
 ];
 
 // ─── Featured Project mini-card ───────────────────────────────────────────────

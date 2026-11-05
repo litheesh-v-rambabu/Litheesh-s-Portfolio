@@ -49,23 +49,23 @@ const navCards = [
 // ─── Impact stats (all figures come from Experience / Projects content) ──────
 const stats = [
   { value: "2+", label: "Years building AI & software" },
-  { value: "60–80%", label: "Manual work automated with LLM chatbots" },
   { value: "55%", label: "Better content discovery via semantic search" },
-  { value: "1", label: "Peer-reviewed publication (IARJSET)" },
+  { value: "93%", label: "Lower inference cost vs. LLM calls (RAG platform)" },
+  { value: "99.2%", label: "Uptime at P95 latency under 1.8 s" },
 ];
 
 // ─── Skills, grouped the way recruiters scan them ─────────────────────────────
 const skillGroups = [
-  { title: "LLMs & GenAI", color: "#00cea8", items: ["LangChain", "RAG Pipelines", "LoRA / PEFT", "Hugging Face", "Prompt Engineering", "Semantic Search"] },
-  { title: "ML & Vision", color: "#bf61ff", items: ["PyTorch", "TensorFlow", "YOLOv8", "OpenCV", "Reinforcement Learning", "scikit-learn"] },
-  { title: "MLOps & Cloud", color: "#60a5fa", items: ["AWS SageMaker", "Docker", "ONNX / TorchScript", "CI/CD", "Databricks", "Postman"] },
-  { title: "Backend & Web", color: "#f472b6", items: ["Python", "FastAPI", "REST APIs", "React", "Java", "MySQL / MongoDB"] },
+  { title: "LLMs & GenAI", color: "#00cea8", items: ["LangChain / LangGraph", "RAG", "PEFT / LoRA / QLoRA", "Hugging Face", "MCP", "Recommendation Systems"] },
+  { title: "ML & Vision", color: "#bf61ff", items: ["PyTorch", "TensorFlow", "scikit-learn", "Computer Vision", "Reinforcement Learning", "MLflow"] },
+  { title: "MLOps & Cloud", color: "#60a5fa", items: ["AWS (EKS, EC2, S3, Lambda)", "Docker", "Kubernetes", "Airflow", "CI/CD", "GPU / CUDA"] },
+  { title: "Backend & Web", color: "#f472b6", items: ["Python", "C++", "SQL", "FastAPI", "PostgreSQL", "FAISS / Chroma / Pinecone"] },
 ];
 
 const FEATURED = [
-  "AI-Powered Code Suggester in IDEs",
-  "SmartSnow",
-  "Brain Tumor Segmentation",
+  "Agent Flight Recorder: Failure Analysis & Regression Testing for LLM Agents",
+  "Multi-Agent RAG Platform for Support Operations",
+  "SmartSnow — Deep RL for Urban Snow Plow Routing",
 ];
 
 const SectionHeading = ({ eyebrow, title, to, cta }) => (
@@ -335,7 +335,7 @@ const HomePage = () => {
     <>
       <SEO
         title="Litheesh Velakaturi Rambabu — AI & ML Engineer | Portfolio"
-        description="AI & ML Engineer specialising in LLMs, computer vision, RAG pipelines, LangChain, FastAPI, and AWS. MS in Artificial Intelligence from University at Buffalo (SUNY) with 2+ years of hands-on experience shipping LLM and computer vision systems. Open to full-time AI/ML roles."
+        description="AI & ML Engineer specialising in LLMs, computer vision, RAG pipelines, LangChain, FastAPI, and AWS. 2+ years of hands-on experience shipping LLM and computer vision systems. Open to full-time AI/ML roles."
         keywords="Litheesh Velakaturi, AI ML Engineer, machine learning engineer, LLM developer, LangChain, computer vision, RAG pipeline, FastAPI, AWS SageMaker, Python developer, Buffalo NY, AI portfolio"
         canonical="https://litheesh.dev"
         name="Litheesh Velakaturi Rambabu"
@@ -346,8 +346,8 @@ const HomePage = () => {
           "name": "Litheesh Velakaturi Rambabu",
           "url": "https://litheesh.dev",
           "image": "https://litheesh.dev/og-image.png",
-          "jobTitle": "AI & ML Engineer",
-          "description": "AI & ML Engineer specialising in LLMs, computer vision, RAG pipelines, and scalable REST APIs. MS in AI from University at Buffalo with 2+ years of experience.",
+          "jobTitle": "Software AI Engineer",
+          "description": "AI & ML Engineer specialising in LLMs, computer vision, RAG pipelines, and scalable REST APIs. 2+ years of experience; pursuing an M.S. in AI at University at Buffalo (exp. Dec 2026).",
           "email": "vrlitheesh2002@gmail.com",
           "telephone": "+17163689971",
           "address": {

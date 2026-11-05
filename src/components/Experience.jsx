@@ -8,11 +8,15 @@ import { motion } from "framer-motion";
 import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../styles";
-import { experiences } from "../constants";
+import { experiences, education } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
-const ExperienceCard = ({ experience }) => {
+const ExperienceCard = ({ experience: raw }) => {
+  // Education entries use degree/school; normalise to the work-experience shape.
+  const experience = raw.degree
+    ? { ...raw, title: raw.degree, company_name: raw.school }
+    : raw;
   return (
     <VerticalTimelineElement
       contentStyle={{
@@ -30,7 +34,11 @@ const ExperienceCard = ({ experience }) => {
       }}
       icon={
         <div className="flex justify-center items-center w-full h-full">
-          {experience.icon ? (
+          {experience.emoji ? (
+            <span className="text-[20px] sm:text-[24px]" aria-hidden="true">
+              {experience.emoji}
+            </span>
+          ) : experience.icon ? (
             <img
               src={experience.icon}
               alt={experience.company_name || "company"}
@@ -135,6 +143,21 @@ const Experience = () => {
               key={`experience-${index}`}
               experience={experience}
             />
+          ))}
+        </VerticalTimeline>
+      </div>
+
+      <motion.div variants={textVariant()} className="mt-24">
+        <p className={`${styles.sectionSubText} text-center`}>
+          Where I studied
+        </p>
+        <h2 className={`${styles.sectionHeadText} text-center`}>Education.</h2>
+      </motion.div>
+
+      <div className="mt-20 flex flex-col">
+        <VerticalTimeline>
+          {education.map((item, index) => (
+            <ExperienceCard key={`education-${index}`} experience={item} />
           ))}
         </VerticalTimeline>
       </div>

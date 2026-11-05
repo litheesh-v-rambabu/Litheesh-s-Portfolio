@@ -60,7 +60,7 @@ const Hero = () => {
           >
             AI &amp; ML Engineer
             <span className="text-secondary font-normal block xs:inline">
-              {" "}· MS in AI, University at Buffalo (SUNY) · 2+ years experience
+              {" "}· M.S. in AI (exp. Dec 2026), University at Buffalo · 2+ years experience
             </span>
           </motion.p>
 

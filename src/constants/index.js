@@ -93,28 +93,30 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Junior AI/ML Engineer",
+    title: "Software AI Engineer",
     company_name: "Isahghan Minds",
+    location: "Bangalore, India",
     icon: isanghan_minds,       // Replace with real company logo when available
     iconBg: "#0a1628",
-    date: "Apr 2024 – Aug 2025",
+    date: "Dec 2023 – Aug 2025",
     points: [
-      "Built and deployed LLM-powered product features and intelligent chatbots, enabling automated conversational workflows that reduced manual intervention by 60–80%.",
-      "Designed and implemented AI-driven recommendation and semantic search systems, improving content discovery accuracy by 55% across the product.",
-      "Developed and optimized computer vision pipelines for process automation using YOLOv8 and OpenCV, achieving 70–80% real-time detection accuracy.",
-      "Fine-tuned domain-specific LLMs and built scalable REST APIs for production ML model deployment using FastAPI, LangChain, RAG Pipelines, and Hugging Face.",
+      "Adapted domain-specific LLMs using Hugging Face for parameter-efficient fine-tuning (PEFT) with LoRA variants, and delivered REST APIs serving production ML models with GPU inference (CUDA), shipped via CI/CD.",
+      "Built recommendation and semantic search systems using sentence embeddings, vector search, and re-ranking (Python, Pandas, NumPy), improving content discovery accuracy by 55% over the previous keyword-based approach.",
+      "Deployed LLM-powered chatbots on AWS alongside generative AI product features, automating end-to-end conversational workflows and cutting manual intervention for end users by 60%+.",
+      "Replaced manual inspection with computer vision pipelines running real-time inference at 70%+ detection accuracy, accelerating turnaround across production processes.",
+      "Developed SQL and Pandas data pipelines to clean, transform, and load training and retrieval data into PostgreSQL and vector stores, supporting model retraining and evaluation.",
     ],
   },
   {
     title: "Software Engineer Intern",
-    company_name: "ESI Software (India) Pvt. Ltd.",
+    company_name: "ESI Software (India) Private Limited",
+    location: "Bangalore, India",
     icon: esi_software,           // Replace with real company logo when available
     iconBg: "#1d2b3a",
     date: "Aug 2023 – Nov 2023",
     points: [
-      "Developed data management components for a Simulation Data Management (SDM) system using Graph DB, improving data accessibility by 40%.",
-      "Implemented read/write operations in Java for graph-based query execution, reducing manual data access overhead by 30%.",
-      "Validated REST API responses and ML model query results using Postman across 10+ simulation pipeline endpoints on AWS, ensuring 100% data integrity across Docker-containerized ML workflows.",
+      "Engineered data management for a Simulation Data Management (SDM) system on a graph database, enabling storage and retrieval of large simulation datasets for TensorFlow and PyTorch ML pipelines and improving data accessibility by 40%.",
+      "Implemented a Java-based graph query layer with read/write operations for graph-based query execution, integrating outputs from scikit-learn and computer vision models, and reducing manual data-access overhead by 30%.",
     ],
   },
   {
@@ -138,6 +140,35 @@ const experiences = [
       "Designed and developed production-ready websites for clients across e-commerce, healthcare, furniture, and education sectors in India and Australia.",
       "Built full-stack solutions using HTML, jQuery, Tailwind CSS, PHP, and MySQL.",
       "Delivered responsive, cross-browser-compatible web apps with clean UI/UX aligned to client brand guidelines.",
+    ],
+  },
+];
+
+
+// ─── EDUCATION ────────────────────────────────────────────────────────────────
+const education = [
+  {
+    degree: "M.S. Engineering Science (Artificial Intelligence)",
+    school: "University at Buffalo, SUNY",
+    location: "Buffalo, NY, USA",
+    date: "Aug 2025 – Expected Dec 2026",
+    emoji: "🎓",
+    iconBg: "#0a1628",
+    points: [
+      "Master of Science in Engineering Science with a concentration in Artificial Intelligence; expected graduation Dec 2026.",
+      "Projects: Agent Flight Recorder, Multi-Agent RAG Platform, and Deep RL Snow Plow Routing.",
+    ],
+  },
+  {
+    degree: "B.E. Artificial Intelligence & Machine Learning",
+    school: "Visvesvaraya Technological University (KSIT)",
+    location: "Bangalore, India",
+    date: "Dec 2020 – Jun 2024",
+    emoji: "🏫",
+    iconBg: "#1d2b3a",
+    points: [
+      "Undergraduate degree in AI & ML; internships at ESI Software and Coincent.ai.",
+      "Published a peer-reviewed paper on blockchain e-voting with AI anomaly detection (IARJSET, 2024).",
     ],
   },
 ];
@@ -188,27 +219,81 @@ const projects = [
   },
 
   {
-    name: "SmartSnow",
+    name: "Agent Flight Recorder: Failure Analysis & Regression Testing for LLM Agents",
     category: "aiml",
-    description: "Developed a multi-agent reinforcement learning framework to optimize snow plow routing in Buffalo, NY, utilizing real-time OpenStreetMap (OSMnx) road networks and historical NOAA weather data.",
+    description: "Observability and regression-testing toolkit for tool-using LLM agents — records every LLM and tool call, detects failures, and gates CI on pass-rate drops.",
     bullets: [
-      "Built BuffaloSnowEnv, a custom Gymnasium environment simulating stochastic snow accumulation and multi-agent plow operations over Buffalo's real city grid via OSMnx.",
-      "Implemented MaskablePPO with action masking to prevent trucks from selecting unreachable segments, reducing wasted exploration and improving sample efficiency.",
-      "Designed a 32-dimensional zone-compressed state space using Louvain community detection to ensure scalability across thousands of real-world road intersections.",
-      "Formulated an urgency-decay reward function to prioritize critical infrastructure (hospitals, highways) while penalizing fuel inefficiency and delayed clearance.",
-      "Trained and evaluated DQN, PPO, and A2C agents across 1 million timesteps, backed by automated evaluation pipelines and 100% passing rates across 17 unit tests."
+      "Architected an observability pipeline in Python that records every LLM and tool call as structured spans in SQLite, tracing ~700 runs across 120 tasks, served via a FastAPI service and Streamlit dashboard.",
+      "Built failure detection combining rule-based checks, LLM-as-judge scoring, and embedding clustering (sentence-transformers, HDBSCAN, UMAP) — 0.76 precision and 0.56 recall against 100 hand-labeled failures on a frozen held-out split.",
+      "Engineered a replay and regression-testing framework that turns failed traces into test cases and compares agent versions using Wilson intervals and McNemar's test.",
+      "Added a CI gate that blocks pass-rate drops beyond 7 points.",
+    ],
+    tags: [
+      { name: "Python", color: "blue-text-gradient" },
+      { name: "FastAPI", color: "green-text-gradient" },
+      { name: "Streamlit", color: "pink-text-gradient" },
+      { name: "LLM-as-Judge", color: "blue-text-gradient" },
+      { name: "HDBSCAN / UMAP", color: "green-text-gradient" },
+      { name: "SQLite", color: "pink-text-gradient" },
+    ],
+    metrics: [
+      { label: "Precision", value: "0.76", color: "#4ade80" },
+      { label: "Runs Traced", value: "~700", color: "#60a5fa" },
+      { label: "Tasks", value: "120", color: "#f472b6" },
+    ],
+    gradient: "blue-purple",
+    source_code_link: null,
+    live_site_link: null,
+  },
+
+  {
+    name: "Multi-Agent RAG Platform for Support Operations",
+    category: "aiml",
+    description: "Horizontally scalable microservice platform with event-driven LangGraph agents unifying RAG, data extraction, and automated triage.",
+    bullets: [
+      "Architected a microservice platform (Python, FastAPI, Docker) with event-driven LangGraph agent orchestration, serving 30K+ requests/month at 40% higher throughput.",
+      "Built a retrieval pipeline with vector search (Chroma/FAISS embeddings, re-ranking) and a QLoRA classifier via Hugging Face — precision@k up from 68% to 87%, hallucination rate down 48%, inference cost down 93% vs. LLM calls.",
+      "Shipped a Model Context Protocol (MCP) server and REST API with CI/CD (pytest, GitHub Actions, LLM-as-judge), circuit breakers, and exponential-backoff retries.",
+      "Holds 99.2% uptime at P95 latency under 1,800 ms.",
+    ],
+    tags: [
+      { name: "LangGraph", color: "blue-text-gradient" },
+      { name: "RAG", color: "green-text-gradient" },
+      { name: "QLoRA", color: "pink-text-gradient" },
+      { name: "FastAPI", color: "blue-text-gradient" },
+      { name: "MCP", color: "green-text-gradient" },
+      { name: "Docker", color: "pink-text-gradient" },
+    ],
+    metrics: [
+      { label: "Precision@k", value: "68→87%", color: "#4ade80" },
+      { label: "Cost ↓", value: "93%", color: "#60a5fa" },
+      { label: "Uptime", value: "99.2%", color: "#f472b6" },
+    ],
+    gradient: "blue-purple",
+    source_code_link: null,
+    live_site_link: null,
+  },
+
+  {
+    name: "SmartSnow — Deep RL for Urban Snow Plow Routing",
+    category: "aiml",
+    description: "Deep reinforcement learning platform that optimizes snow plow routing on Buffalo's real road network using OSMnx and NOAA-calibrated snowfall.",
+    bullets: [
+      "Built a Gymnasium environment on Buffalo's road network (OSMnx: 5,191 nodes, 8,040 edges) with NOAA-calibrated zero-inflated Gamma snowfall (5 intensity regimes), cutting state space 200x (8,040D to 40D) via Louvain clustering.",
+      "Redesigned a sparse urgency-decay reward into a dense clearance-mode reward (17x clearance gain); trained PPO, A2C, DQN, and MaskablePPO (Stable-Baselines3) for 10M timesteps on dual NVIDIA L40S GPUs (CUDA).",
+      "Evaluated agents over 50 deterministic episodes across 5 snowfall intensities — DQN cleared 80% of critical arterial roads in high snowfall versus 0% for the greedy heuristic baseline.",
     ],
     tags: [
       { name: "Reinforcement Learning", color: "blue-text-gradient" },
-      { name: "MaskablePPO / A2C", color: "green-text-gradient" },
+      { name: "Stable-Baselines3", color: "green-text-gradient" },
       { name: "Gymnasium", color: "pink-text-gradient" },
       { name: "OSMnx", color: "blue-text-gradient" },
-      { name: "Stable-Baselines3", color: "pink-text-gradient" },
+      { name: "CUDA", color: "pink-text-gradient" },
     ],
     metrics: [
-      { label: "Training Steps", value: "1M+", color: "#4ade80" },
-      { label: "Test Coverage", value: "100%", color: "#60a5fa" },
-      { label: "City Nodes", value: "~12K", color: "#f472b6" },
+      { label: "State Space ↓", value: "200x", color: "#4ade80" },
+      { label: "Clearance Gain", value: "17x", color: "#60a5fa" },
+      { label: "Timesteps", value: "10M", color: "#f472b6" },
     ],
     gradient: "blue-purple",
     source_code_link: null,
@@ -502,4 +587,4 @@ export const achievements = [
   // ADD MORE ACHIEVEMENTS HERE ↓
 ];
 
-export { services, technologies, experiences, testimonials, projects, contacts };
+export { services, technologies, experiences, education, testimonials, projects, contacts };

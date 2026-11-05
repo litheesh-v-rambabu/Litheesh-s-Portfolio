@@ -141,14 +141,14 @@ const intents = [
   /* ── Education ── */
   {
     tags: ["education", "study", "studying", "degree", "university", "college", "school", "buffalo", "ub", "suny", "vtu", "ksit", "bachelor", "master", "masters", "graduate", "academic", "qualification"],
-    response: `**Education** 🎓\n\n**Masters in Engineering Science (Artificial Intelligence)**\nUniversity at Buffalo (SUNY), Buffalo, NY\n2025 – Present\n\n**Bachelor of Engineering (AI & Machine Learning)**\nVisvesvaraya Technological University (KSIT)\nBangalore, India | 2020 – 2024`,
+    response: `**Education** 🎓\n\n**Masters in Engineering Science (Artificial Intelligence)**\nUniversity at Buffalo (SUNY), Buffalo, NY\nAug 2025 – Expected Dec 2026\n\n**Bachelor of Engineering (AI & Machine Learning)**\nVisvesvaraya Technological University (KSIT)\nBangalore, India | Dec 2020 – Jun 2024`,
     chips: ["His experience", "His skills", "Contact him"],
   },
 
   /* ── Experience / Work ── */
   {
     tags: ["experience", "work", "job", "career", "employment", "worked", "working", "company", "professional", "internship", "intern", "isahghan", "esi", "coincent", "freelance", "engineer", "position"],
-    response: `**Work Experience** 💼\n\n**Junior AI/ML Engineer — Isahghan Minds**\nApr 2024 – Aug 2025 · Bangalore\n• LLM-powered chatbots reducing manual intervention by 60–80%\n• AI semantic search improving accuracy by 55%\n• Computer vision pipelines with 70–80% detection accuracy\n• Fine-tuned LLMs + built scalable REST APIs\n\n**Software Engineer Intern — ESI Software**\nAug 2023 – Nov 2023 · Bangalore\n• Graph DB system improving data access by 40%\n• REST API validation across 10+ ML pipeline endpoints on AWS\n\n**Machine Learning Intern — Coincent.ai**\nApr 2023 – May 2023\n• Dog breed classifier: 90–95% accuracy (ResNet/EfficientNet)\n\n**Freelance Web Developer — Self-Employed**\nMar 2023 – Present\n• Production sites for e-commerce, healthcare & furniture clients`,
+    response: `**Work Experience** 💼\n\n**Software AI Engineer — Isahghan Minds**\nDec 2023 – Aug 2025 · Bangalore\n• LLM chatbots on AWS cutting manual intervention by 60%+\n• Semantic search & recommendations improving accuracy by 55%\n• Computer vision pipelines with 70%+ detection accuracy\n• PEFT/LoRA fine-tuned LLMs served via REST APIs (CUDA, CI/CD)\n\n**Software Engineer Intern — ESI Software**\nAug 2023 – Nov 2023 · Bangalore\n• Graph DB data management improving data access by 40%\n• Java graph query layer cutting manual data-access overhead by 30%\n\n**Machine Learning Intern — Coincent.ai**\nApr 2023 – May 2023\n• Dog breed classifier: 90–95% accuracy (ResNet/EfficientNet)\n\n**Freelance Web Developer — Self-Employed**\nMar 2023 – Present\n• Production sites for e-commerce, healthcare & furniture clients`,
     chips: ["His tech stack", "His projects", "Contact him"],
   },
 
@@ -190,7 +190,7 @@ const intents = [
   /* ── Projects (general) ── */
   {
     tags: ["project", "projects", "built", "portfolio", "work done", "what has he made", "show projects", "all projects"],
-    response: `**Litheesh's Projects** 🛠️\n\n**AI / ML:**\n• 🤖 AI Code Suggester — CodeLlama-7B, 250ms on AWS SageMaker\n• 🧠 Brain Tumor Segmentation — CNN pipeline, 95%+ accuracy\n• 🌐 NLTA Browser Extension — 50+ languages, 5K+ users\n• 🐕 Dog Breed Classifier — ResNet/EfficientNet, 90–95%\n• 🗳️ Blockchain e-Voting — Published in IARJSET (2024)\n\n**Web Development:**\n• 🛒 Anbu CocoMart — Live e-commerce (anbucocomart.in)\n• 🪑 KS Modular — Modular furniture business site\n• 🦷 AuSmile Dental — Healthcare site (Australia)\n• 🏢 Stavat Systems — Corporate website\n\nAsk me about any specific project for details!`,
+    response: `**Litheesh's Projects** 🛠️\n\n**AI / ML:**\n• 🔍 Agent Flight Recorder — LLM agent tracing, failure detection & CI regression gate\n• 🧩 Multi-Agent RAG Platform — LangGraph, 30K+ req/month, precision@k 68→87%\n• ❄️ SmartSnow — Deep RL snow plow routing (10M timesteps)\n• 🤖 AI Code Suggester — CodeLlama-7B, 250ms on AWS SageMaker\n• 🧠 Brain Tumor Segmentation — CNN pipeline, 95%+ accuracy\n• 🌐 NLTA Browser Extension — 50+ languages, 5K+ users\n• 🐕 Dog Breed Classifier — ResNet/EfficientNet, 90–95%\n• 🗳️ Blockchain e-Voting — Published in IARJSET (2024)\n\n**Web Development:**\n• 🛒 Anbu CocoMart — Live e-commerce (anbucocomart.in)\n• 🪑 KS Modular — Modular furniture business site\n• 🦷 AuSmile Dental — Healthcare site (Australia)\n• 🏢 Stavat Systems — Corporate website\n\nAsk me about any specific project for details!`,
     chips: ["Code Suggester", "Brain Tumor project", "NLTA project", "Web projects"],
   },
 
