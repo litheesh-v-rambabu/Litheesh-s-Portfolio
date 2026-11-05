@@ -3,6 +3,117 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
 
+// ── Live AI terminal: cycles through real projects ──────────────────────────
+const SCENES = [
+  {
+    file: "code_suggester.py",
+    cmd: 'model.complete("def quicksort(")',
+    out: [
+      ["base", "CodeLlama-7B  ·  LoRA r=16  ·  4-bit"],
+      ["ok", "✓ suggestion ready"],
+    ],
+    stats: [["+28%", "accuracy"], ["250ms", "latency"], ["−60%", "GPU memory"]],
+  },
+  {
+    file: "smartsnow.py",
+    cmd: "agent.route(plows=4, city='buffalo')",
+    out: [
+      ["base", "MaskablePPO  ·  OSMnx road graph  ·  NOAA data"],
+      ["ok", "✓ policy trained · 1M timesteps"],
+    ],
+    stats: [["1M", "timesteps"], ["17", "unit tests"], ["3", "RL agents"]],
+  },
+  {
+    file: "vision_pipeline.py",
+    cmd: "detect(frame, model='yolov8')",
+    out: [
+      ["base", "YOLOv8  ·  OpenCV  ·  real-time"],
+      ["ok", "✓ detection accuracy 70–80%"],
+    ],
+    stats: [["70–80%", "accuracy"], ["RT", "real-time"], ["API", "FastAPI"]],
+  },
+];
+
+const HeroTerminal = () => {
+  const [i, setI] = React.useState(0);
+  const [n, setN] = React.useState(0);
+  const [phase, setPhase] = React.useState("type"); // type | out | hold
+  const reduce =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scene = SCENES[i];
+
+  React.useEffect(() => {
+    if (reduce) {
+      setN(scene.cmd.length);
+      setPhase("out");
+      return;
+    }
+    let t;
+    if (phase === "type") {
+      t = n < scene.cmd.length
+        ? setTimeout(() => setN(n + 1), 38)
+        : setTimeout(() => setPhase("out"), 350);
+    } else if (phase === "out") {
+      t = setTimeout(() => setPhase("hold"), 3600);
+    } else {
+      t = setTimeout(() => { setI((i + 1) % SCENES.length); setN(0); setPhase("type"); }, 200);
+    }
+    return () => clearTimeout(t);
+  }, [n, phase, i, reduce, scene.cmd.length]);
+
+  const mono = { fontFamily: '"IBM Plex Mono", ui-monospace, monospace' };
+  return (
+    <div
+      className="relative rounded-2xl overflow-hidden"
+      style={{
+        background: "rgba(9,11,18,0.88)",
+        border: "1px solid rgba(124,242,201,0.22)",
+        boxShadow: "0 0 0 1px rgba(143,123,255,0.12), 0 30px 80px -20px rgba(124,242,201,0.25)",
+        backdropFilter: "blur(6px)",
+        ...mono,
+      }}
+    >
+      {/* title bar */}
+      <div className="flex items-center justify-between px-4 py-2.5" style={{ borderBottom: "1px solid #1c2130", color: "#8b93a8", fontSize: 12 }}>
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+          <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
+          <span className="ml-2">{scene.file}</span>
+        </div>
+        <span className="flex items-center gap-1.5" style={{ color: "#7cf2c9" }}>
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "#7cf2c9" }} /> live
+        </span>
+      </div>
+
+      {/* body */}
+      <div className="px-4 sm:px-5 py-4 text-[12px] sm:text-[13px] leading-[1.9]" style={{ color: "#c8cfe0", minHeight: 150 }}>
+        <div style={{ color: "#5b6580" }}># currently shipping</div>
+        <div>
+          <span style={{ color: "#8f7bff" }}>&gt;&gt;&gt;</span>{" "}
+          {scene.cmd.slice(0, n)}
+          <span className="inline-block w-[7px] h-[14px] align-[-2px] animate-pulse" style={{ background: "#7cf2c9" }} />
+        </div>
+        {phase !== "type" &&
+          scene.out.map(([k, line]) => (
+            <div key={line} style={{ color: k === "ok" ? "#7cf2c9" : "#8b93a8" }}>{line}</div>
+          ))}
+      </div>
+
+      {/* metric strip */}
+      <div className="grid grid-cols-3" style={{ borderTop: "1px solid #1c2130" }}>
+        {scene.stats.map(([v, l], idx) => (
+          <div key={l} className="px-4 py-3" style={{ borderRight: idx < 2 ? "1px solid #1c2130" : "none" }}>
+            <div className="text-white font-extrabold text-[18px] sm:text-[22px] leading-none" style={{ fontFamily: '"Schibsted Grotesk", sans-serif' }}>{v}</div>
+            <div className="mt-1 text-[10.5px] sm:text-[11px]" style={{ color: "#8b93a8" }}>{l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
   return (
     <section className="relative w-full min-h-screen mx-auto overflow-hidden">
@@ -96,29 +207,18 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* ── Right: Profile image ── */}
+        {/* ── Right: live AI terminal ── */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-          className="relative flex-shrink-0 z-10 flex items-center justify-center
-                     w-[200px] xs:w-[240px] sm:w-[300px] md:w-[380px] lg:w-[440px]
-                     mt-2 md:mt-0"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
+          className="relative z-10 w-full md:w-[460px] lg:w-[520px] flex-shrink-0"
         >
-          {/* Glow */}
           <div
-            className="absolute blur-[60px] sm:blur-[80px] opacity-25 w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] rounded-full"
+            className="absolute -inset-6 blur-[70px] opacity-30 rounded-full"
             style={{ background: "radial-gradient(circle, #8f7bff 0%, #7cf2c9 100%)" }}
           />
-          <img
-            src="/profile.png"
-            alt="Litheesh — AI & ML Engineer"
-            className="relative w-full object-contain drop-shadow-2xl"
-            style={{
-              maskImage: "radial-gradient(circle at 50% 42%, white 38%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,0.3) 66%, transparent 78%)",
-              WebkitMaskImage: "radial-gradient(circle at 50% 42%, white 38%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,0.3) 66%, transparent 78%)",
-            }}
-          />
+          <HeroTerminal />
         </motion.div>
       </div>
 
