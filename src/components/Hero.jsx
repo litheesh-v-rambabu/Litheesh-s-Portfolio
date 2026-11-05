@@ -18,10 +18,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full"
-            style={{ background: "transparent" }}
+            className="inline-flex w-fit items-center gap-2 px-3 py-1.5 rounded-full text-[12px] sm:text-[13px] font-medium"
+            style={{ background: "rgba(0,206,168,0.08)", border: "1px solid rgba(0,206,168,0.3)", color: "#7ff0d8" }}
           >
-            
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00cea8] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00cea8]" />
+            </span>
+            Open to full-time AI / ML Engineer roles
           </motion.div>
 
           {/* Name */}
@@ -56,7 +60,7 @@ const Hero = () => {
           >
             AI &amp; ML Engineer
             <span className="text-secondary font-normal block xs:inline">
-              {" "}· University at Buffalo (SUNY)
+              {" "}· MS in AI, University at Buffalo (SUNY) · 2+ years experience
             </span>
           </motion.p>
 
@@ -65,10 +69,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-secondary text-[13px] sm:text-[15px] max-w-md leading-[24px]"
+            className="text-secondary text-[13px] sm:text-[15px] max-w-lg leading-[24px]"
           >
-            Building LLM-powered systems, computer vision pipelines, and
-            scalable APIs that turn research into real products.
+            I build and ship LLM apps, RAG pipelines, and computer vision
+            systems — from fine-tuning models to deploying them as fast,
+            reliable APIs on AWS.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -81,9 +86,9 @@ const Hero = () => {
             <Link
               to="/projects"
               className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-xl text-white font-semibold text-[13px] sm:text-[14px] flex items-center gap-2"
-              style={{ border: "1px solid rgba(255,255,255,0.18)", background: "rgba(255,255,255,0.04)" }}
+              style={{ background: "linear-gradient(90deg, #00cea8 0%, #bf61ff 100%)" }}
             >
-              View Projects
+              View Projects →
             </Link>
 
             <Link
