@@ -12,6 +12,7 @@ const SCENES = [
       ["base", "CodeLlama-7B  ·  LoRA r=16  ·  4-bit"],
       ["ok", "✓ suggestion ready"],
     ],
+    next: [["pivot", 0.62], ["arr", 0.21], ["len", 0.09]],
     stats: [["+28%", "accuracy"], ["250ms", "latency"], ["−60%", "GPU memory"]],
   },
   {
@@ -21,6 +22,7 @@ const SCENES = [
       ["base", "MaskablePPO  ·  OSMnx road graph  ·  NOAA data"],
       ["ok", "✓ policy trained · 1M timesteps"],
     ],
+    next: [["zone", 0.55], ["hospital", 0.27], ["highway", 0.11]],
     stats: [["1M", "timesteps"], ["17", "unit tests"], ["3", "RL agents"]],
   },
   {
@@ -30,6 +32,7 @@ const SCENES = [
       ["base", "YOLOv8  ·  OpenCV  ·  real-time"],
       ["ok", "✓ detection accuracy 70–80%"],
     ],
+    next: [["bbox", 0.58], ["conf", 0.24], ["label", 0.12]],
     stats: [["70–80%", "accuracy"], ["RT", "real-time"], ["API", "FastAPI"]],
   },
 ];
@@ -64,12 +67,12 @@ const HeroTerminal = () => {
 
   const mono = { fontFamily: '"IBM Plex Mono", ui-monospace, monospace' };
   return (
+    <div className="relative rounded-2xl p-[1.5px] overflow-hidden" style={{ boxShadow: "0 30px 80px -20px rgba(124,242,201,0.3)" }}>
+      <div className="hero-spin-border" aria-hidden="true" />
     <div
-      className="relative rounded-2xl overflow-hidden"
+      className="relative rounded-[15px] overflow-hidden"
       style={{
-        background: "rgba(9,11,18,0.88)",
-        border: "1px solid rgba(124,242,201,0.22)",
-        boxShadow: "0 0 0 1px rgba(143,123,255,0.12), 0 30px 80px -20px rgba(124,242,201,0.25)",
+        background: "rgba(9,11,18,0.94)",
         backdropFilter: "blur(6px)",
         ...mono,
       }}
@@ -88,7 +91,7 @@ const HeroTerminal = () => {
       </div>
 
       {/* body */}
-      <div className="px-4 sm:px-5 py-4 text-[12px] sm:text-[13px] leading-[1.9]" style={{ color: "#c8cfe0", minHeight: 150 }}>
+      <div className="px-4 sm:px-5 py-4 text-[12px] sm:text-[13px] leading-[1.9]" style={{ color: "#c8cfe0", minHeight: 112 }}>
         <div style={{ color: "#5b6580" }}># currently shipping</div>
         <div>
           <span style={{ color: "#8f7bff" }}>&gt;&gt;&gt;</span>{" "}
@@ -101,6 +104,31 @@ const HeroTerminal = () => {
           ))}
       </div>
 
+      {/* next-token probabilities */}
+      <div className="px-4 sm:px-5 pb-4" style={{ opacity: phase === "type" ? 0.35 : 1, transition: "opacity .4s" }}>
+        <div className="flex justify-between text-[10.5px] mb-2" style={{ color: "#5b6580" }}>
+          <span>next token · top-3</span>
+          <span>illustrative</span>
+        </div>
+        {scene.next.map(([tok, pr], k) => (
+          <div key={tok} className="flex items-center gap-3 text-[12px] mb-1.5">
+            <span className="w-[62px] shrink-0" style={{ color: k === 0 ? "#7cf2c9" : "#8b93a8" }}>{tok}</span>
+            <div className="flex-1 h-[7px] rounded-full overflow-hidden" style={{ background: "#1c2130" }}>
+              <div
+                className="h-full rounded-full"
+                style={{
+                  width: phase === "type" ? "0%" : `${pr * 100}%`,
+                  background: k === 0 ? "linear-gradient(90deg,#8f7bff,#7cf2c9)" : "#3a4256",
+                  boxShadow: k === 0 && phase !== "type" ? "0 0 12px rgba(124,242,201,0.7)" : "none",
+                  transition: `width .9s cubic-bezier(.2,.8,.2,1) ${k * 120}ms`,
+                }}
+              />
+            </div>
+            <span className="w-9 text-right tabular-nums" style={{ color: "#8b93a8" }}>{phase === "type" ? "—" : pr.toFixed(2)}</span>
+          </div>
+        ))}
+      </div>
+
       {/* metric strip */}
       <div className="grid grid-cols-3" style={{ borderTop: "1px solid #1c2130" }}>
         {scene.stats.map(([v, l], idx) => (
@@ -110,6 +138,7 @@ const HeroTerminal = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };
@@ -165,7 +194,7 @@ const AttentionCard = () => {
   const ARC = 56; // headroom for arcs
   return (
     <div
-      className="mt-4 rounded-2xl px-4 sm:px-6 py-5"
+      className="mt-3 rounded-2xl px-4 sm:px-6 py-4"
       style={{
         background: "linear-gradient(180deg, rgba(20,16,40,0.9), rgba(9,11,18,0.9))",
         border: "1px solid rgba(143,123,255,0.35)",
@@ -210,7 +239,7 @@ const AttentionCard = () => {
             })}
           </svg>
         )}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {TOKENS.map((t, j) => {
             const a = w[j] / max;
             const isActive = j === active;
@@ -222,7 +251,7 @@ const AttentionCard = () => {
                 onMouseEnter={() => { setPaused(true); setActive(j); }}
                 onFocus={() => { setPaused(true); setActive(j); }}
                 onClick={() => { setPaused(true); setActive(j); }}
-                className="px-3 py-2 rounded-lg text-[13px] sm:text-[14px] font-medium transition-all"
+                className="px-2.5 py-1.5 rounded-lg text-[12px] sm:text-[13px] font-medium transition-all"
                 style={{
                   color: isActive ? "#05060a" : "#eef1f7",
                   background: isActive ? "linear-gradient(95deg,#8f7bff,#b3a6ff)" : `rgba(124,242,201,${(0.05 + a * 0.45).toFixed(2)})`,
