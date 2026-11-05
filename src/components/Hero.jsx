@@ -114,6 +114,81 @@ const HeroTerminal = () => {
   );
 };
 
+// ── Attention playground: hover a token to see who it "attends" to ──────────
+const TOKENS = ["Litheesh", "builds", "LLM", "systems", "that", "ship", "to", "production"];
+const LINKS = [[0, 1], [1, 3], [2, 3], [3, 5], [5, 7], [2, 7], [4, 5]];
+const WEIGHTS = TOKENS.map((_, i) => {
+  const raw = TOKENS.map((_, j) => {
+    let w = Math.exp(-Math.abs(i - j) / 2) * (i === j ? 0.5 : 1);
+    if (LINKS.some(([a, b]) => (a === i && b === j) || (a === j && b === i))) w += 1.4;
+    return w;
+  });
+  const sum = raw.reduce((a, b) => a + b, 0);
+  return raw.map((w) => w / sum);
+});
+
+const AttentionCard = () => {
+  const [active, setActive] = React.useState(3);
+  const [paused, setPaused] = React.useState(false);
+  const reduce =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  React.useEffect(() => {
+    if (paused || reduce) return;
+    const t = setInterval(() => setActive((a) => (a + 1) % TOKENS.length), 1800);
+    return () => clearInterval(t);
+  }, [paused, reduce]);
+
+  const w = WEIGHTS[active];
+  const max = Math.max(...w);
+  return (
+    <div
+      className="mt-4 rounded-2xl px-4 sm:px-5 py-4"
+      style={{
+        background: "rgba(9,11,18,0.88)",
+        border: "1px solid rgba(143,123,255,0.25)",
+        fontFamily: '"IBM Plex Mono", ui-monospace, monospace',
+      }}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="flex justify-between text-[11px] mb-3" style={{ color: "#8b93a8" }}>
+        <span>self-attention · layer 12 · head 3</span>
+        <span style={{ color: "#8f7bff" }}>illustrative</span>
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {TOKENS.map((t, j) => {
+          const a = w[j] / max;
+          const isActive = j === active;
+          return (
+            <button
+              key={t + j}
+              type="button"
+              onMouseEnter={() => { setPaused(true); setActive(j); }}
+              onFocus={() => { setPaused(true); setActive(j); }}
+              onClick={() => { setPaused(true); setActive(j); }}
+              className="px-2.5 py-1.5 rounded-md text-[12px] sm:text-[13px] transition-colors"
+              style={{
+                color: isActive ? "#05060a" : "#eef1f7",
+                background: isActive ? "#8f7bff" : `rgba(124,242,201,${(0.06 + a * 0.5).toFixed(2)})`,
+                border: `1px solid ${isActive ? "#8f7bff" : `rgba(124,242,201,${(0.12 + a * 0.5).toFixed(2)})`}`,
+              }}
+            >
+              {t}
+              {!isActive && <sup className="ml-1 text-[9px]" style={{ color: "#7cf2c9" }}>{Math.round(w[j] * 100)}</sup>}
+            </button>
+          );
+        })}
+      </div>
+      <div className="mt-3 h-1.5 w-full rounded-full flex overflow-hidden" style={{ background: "#1c2130" }} aria-hidden="true">
+        {w.map((v, j) => (
+          <div key={j} style={{ width: `${v * 100}%`, background: j === active ? "#8f7bff" : "#7cf2c9", opacity: j === active ? 1 : 0.25 + (v / max) * 0.6 }} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
   return (
     <section className="relative w-full min-h-screen mx-auto overflow-hidden">
@@ -219,6 +294,7 @@ const Hero = () => {
             style={{ background: "radial-gradient(circle, #8f7bff 0%, #7cf2c9 100%)" }}
           />
           <HeroTerminal />
+          <AttentionCard />
         </motion.div>
       </div>
 
