@@ -115,8 +115,8 @@ const HeroTerminal = () => {
 };
 
 // ── Attention playground: hover a token to see who it "attends" to ──────────
-const TOKENS = ["Litheesh", "builds", "LLM", "systems", "that", "ship", "to", "production"];
-const LINKS = [[0, 1], [1, 3], [2, 3], [3, 5], [5, 7], [2, 7], [4, 5]];
+const TOKENS = ["Litheesh", "builds", "LLM", "systems", "that", "ship"];
+const LINKS = [[0, 1], [1, 3], [2, 3], [3, 5], [4, 5], [0, 5]];
 const WEIGHTS = TOKENS.map((_, i) => {
   const raw = TOKENS.map((_, j) => {
     let w = Math.exp(-Math.abs(i - j) / 2) * (i === j ? 0.5 : 1);
@@ -130,6 +130,9 @@ const WEIGHTS = TOKENS.map((_, i) => {
 const AttentionCard = () => {
   const [active, setActive] = React.useState(3);
   const [paused, setPaused] = React.useState(false);
+  const [geo, setGeo] = React.useState({ w: 0, pts: [], oneRow: false });
+  const boxRef = React.useRef(null);
+  const tokRefs = React.useRef([]);
   const reduce =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -140,50 +143,99 @@ const AttentionCard = () => {
     return () => clearInterval(t);
   }, [paused, reduce]);
 
+  React.useLayoutEffect(() => {
+    const measure = () => {
+      const box = boxRef.current;
+      if (!box) return;
+      const br = box.getBoundingClientRect();
+      const pts = tokRefs.current.map((el) => {
+        const r = el.getBoundingClientRect();
+        return { x: r.left - br.left + r.width / 2, y: r.top - br.top };
+      });
+      setGeo({ w: br.width, pts, oneRow: pts.every((q) => Math.abs(q.y - pts[0].y) < 4) });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(boxRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   const w = WEIGHTS[active];
   const max = Math.max(...w);
+  const ARC = 56; // headroom for arcs
   return (
     <div
-      className="mt-4 rounded-2xl px-4 sm:px-5 py-4"
+      className="mt-4 rounded-2xl px-4 sm:px-6 py-5"
       style={{
-        background: "rgba(9,11,18,0.88)",
-        border: "1px solid rgba(143,123,255,0.25)",
+        background: "linear-gradient(180deg, rgba(20,16,40,0.9), rgba(9,11,18,0.9))",
+        border: "1px solid rgba(143,123,255,0.35)",
+        boxShadow: "0 0 40px -12px rgba(143,123,255,0.45)",
         fontFamily: '"IBM Plex Mono", ui-monospace, monospace',
       }}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex justify-between text-[11px] mb-3" style={{ color: "#8b93a8" }}>
+      <div className="flex justify-between text-[11px]" style={{ color: "#8b93a8" }}>
         <span>self-attention · layer 12 · head 3</span>
         <span style={{ color: "#8f7bff" }}>illustrative</span>
       </div>
-      <div className="flex flex-wrap gap-1.5">
-        {TOKENS.map((t, j) => {
-          const a = w[j] / max;
-          const isActive = j === active;
-          return (
-            <button
-              key={t + j}
-              type="button"
-              onMouseEnter={() => { setPaused(true); setActive(j); }}
-              onFocus={() => { setPaused(true); setActive(j); }}
-              onClick={() => { setPaused(true); setActive(j); }}
-              className="px-2.5 py-1.5 rounded-md text-[12px] sm:text-[13px] transition-colors"
-              style={{
-                color: isActive ? "#05060a" : "#eef1f7",
-                background: isActive ? "#8f7bff" : `rgba(124,242,201,${(0.06 + a * 0.5).toFixed(2)})`,
-                border: `1px solid ${isActive ? "#8f7bff" : `rgba(124,242,201,${(0.12 + a * 0.5).toFixed(2)})`}`,
-              }}
-            >
-              {t}
-              {!isActive && <sup className="ml-1 text-[9px]" style={{ color: "#7cf2c9" }}>{Math.round(w[j] * 100)}</sup>}
-            </button>
-          );
-        })}
-      </div>
-      <div className="mt-3 h-1.5 w-full rounded-full flex overflow-hidden" style={{ background: "#1c2130" }} aria-hidden="true">
-        {w.map((v, j) => (
-          <div key={j} style={{ width: `${v * 100}%`, background: j === active ? "#8f7bff" : "#7cf2c9", opacity: j === active ? 1 : 0.25 + (v / max) * 0.6 }} />
-        ))}
+
+      <div ref={boxRef} className="relative" style={{ paddingTop: geo.oneRow ? ARC : 14 }}>
+        {geo.oneRow && (
+          <svg className="absolute left-0 top-0 pointer-events-none" width={geo.w} height={ARC + 4} aria-hidden="true">
+            <defs>
+              <linearGradient id="arcg" x1="0" x2="1">
+                <stop offset="0" stopColor="#8f7bff" />
+                <stop offset="1" stopColor="#7cf2c9" />
+              </linearGradient>
+            </defs>
+            {geo.pts.map((q, j) => {
+              if (j === active) return null;
+              const from = geo.pts[active];
+              const y0 = ARC + 2;
+              const mid = (from.x + q.x) / 2;
+              const lift = Math.min(ARC - 4, 14 + Math.abs(q.x - from.x) * 0.22);
+              const v = w[j] / max;
+              return (
+                <path
+                  key={j}
+                  d={`M${from.x},${y0} Q${mid},${y0 - lift * 2} ${q.x},${y0}`}
+                  fill="none"
+                  stroke="url(#arcg)"
+                  strokeWidth={0.8 + v * 3.2}
+                  strokeLinecap="round"
+                  opacity={0.18 + v * 0.8}
+                  style={{ transition: "opacity .3s" }}
+                />
+              );
+            })}
+          </svg>
+        )}
+        <div className="flex flex-wrap gap-2">
+          {TOKENS.map((t, j) => {
+            const a = w[j] / max;
+            const isActive = j === active;
+            return (
+              <button
+                key={t + j}
+                ref={(el) => (tokRefs.current[j] = el)}
+                type="button"
+                onMouseEnter={() => { setPaused(true); setActive(j); }}
+                onFocus={() => { setPaused(true); setActive(j); }}
+                onClick={() => { setPaused(true); setActive(j); }}
+                className="px-3 py-2 rounded-lg text-[13px] sm:text-[14px] font-medium transition-all"
+                style={{
+                  color: isActive ? "#05060a" : "#eef1f7",
+                  background: isActive ? "linear-gradient(95deg,#8f7bff,#b3a6ff)" : `rgba(124,242,201,${(0.05 + a * 0.45).toFixed(2)})`,
+                  border: `1px solid ${isActive ? "#8f7bff" : `rgba(124,242,201,${(0.12 + a * 0.55).toFixed(2)})`}`,
+                  boxShadow: isActive ? "0 0 18px rgba(143,123,255,0.6)" : "none",
+                  transform: isActive ? "translateY(-2px)" : "none",
+                }}
+              >
+                {t}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
